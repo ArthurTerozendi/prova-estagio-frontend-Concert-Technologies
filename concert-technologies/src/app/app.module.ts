@@ -17,6 +17,5 @@ import { LoginComponent } from './login/login/login.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  window.location.href = 'login.html'
+export class AppModule {
 }
