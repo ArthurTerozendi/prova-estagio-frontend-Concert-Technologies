@@ -6,7 +6,7 @@ import { LoginModule } from './login/login.module';
 
 const routes: Routes = [
   {path: 'login', loadChildren: () => import('src/app/login/login.module').then(m => LoginModule)},
-  {path: 'home', loadChildren: () => import('src/app/home/home.module').then(m => HomeModule), canActivate: [AutenticadorGuard]},
+  {path: 'home', loadChildren: () => import('src/app/home/home.module').then(m => HomeModule)}, //canActivate: [AutenticadorGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 
 ];

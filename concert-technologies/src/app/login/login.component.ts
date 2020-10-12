@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    setTimeout(() => this.loading = true , 1500);
+    setTimeout(() => this.loading = true , 1200);
     
     this.form = this.formBuilder.group({
       login: [null],
