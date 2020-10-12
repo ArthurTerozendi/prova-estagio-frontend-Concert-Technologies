@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
   
   loading : boolean = false;
 
+  erroLogin : boolean = false;
+
   form : FormGroup;
   constructor(
     private loginService : LoginService,
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
   efetuarLogin() {
     console.log(this.form.value);
     this.loginService.fazerLogin(this.form.value);
+    this.erroLogin = !this.loginService.conferirEstadoLogin();
   }
 
 }

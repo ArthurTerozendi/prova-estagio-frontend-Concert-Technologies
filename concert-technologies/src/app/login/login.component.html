@@ -9,6 +9,9 @@
                 <label for="senha">Senha</label>
                 <input type="password" class="form-control" id="senha" formControlName='senha'>
             </div>
+            <div *ngIf="erroLogin" style="color: red;">
+                <p> Usurio ou senha incorretos </p>
+            </div>
             <button type="submit" class="btn btn-primary" (click)="efetuarLogin()">Entrar</button>
         </form>
     </div>

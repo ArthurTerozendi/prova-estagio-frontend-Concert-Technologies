@@ -15,7 +15,6 @@ export class LoginService {
   fazerLogin(usuario) {
     if(usuario.login == 'concert' && usuario.senha == 'prova'){
       this.logado = true;
-      console.log('logado com sucesso')
       this.router.navigate(['../']);
     } else {
       this.logado = false;
