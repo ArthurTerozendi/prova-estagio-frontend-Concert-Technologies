@@ -3,18 +3,18 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login/login.component';
+import { AutenticadorGuard } from './guards/autenticador.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  exports: [],
+  providers: [AutenticadorGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
