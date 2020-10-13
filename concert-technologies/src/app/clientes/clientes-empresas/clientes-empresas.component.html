@@ -1,5 +1,5 @@
-<div *ngIf="carregado; else carregando" >
-    <div class="card">
+<div class="row" *ngIf="carregado; else carregando">
+    <div class="card col-sm" style="border: 1px;">
         <div class="card-header">
             <div class="float-left">
                 <h4>Empresas</h4>
@@ -8,8 +8,8 @@
                 <button class="btn btn-primary" [routerLink]="['../novo']">Nova Empresa</button>
             </div>
         </div>
-        <div class="card-body">
-            <table class="table table-hover" *ngIf="empresas$  | async as empresas; else loading" >
+        <div class="card-body" style="overflow-y: scroll; height: 500px;">
+            <table class="table table-hover" *ngIf="empresas$  | async as empresas; else loading">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -25,7 +25,7 @@
                             <span class="float-right">
                                 <button class="btn btn-outline-warning mb-1 btn-sm">
                                     Atualizar</button>
-    
+
                                 <button class="btn btn-outline-danger mb-1 btn-sm"> Remover
                                 </button>
                             </span>
@@ -41,6 +41,9 @@
                 </div>
             </ng-template>
         </div>
+    </div>
+    <div>
+        <router-outlet></router-outlet>
     </div>
 </div>
 <ng-template #carregando>
