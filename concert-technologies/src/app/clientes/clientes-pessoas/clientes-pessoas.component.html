@@ -1,13 +1,13 @@
 <div class="row" *ngIf="carregado; else carregando">
-    <div class="card col-lg" style="border: 1px;">
+    <div class="card col-4" style="border: 1px;">
         <div class="card-header">
             <div class="float-left">
                 <h4>Pessoas</h4>
             </div>
             <div class="float-right">
-                <button class="btn btn-primary">Cadastrar Pessoa</button>
+                <button class="btn btn-primary" [routerLink]="['../cadastrar']">Cadastrar Pessoa</button>
 
-                <button class="btn btn-secondary">Atualizar</button>
+                <button class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
             </div>
         </div>
         <div class="card-body" style="overflow-y: scroll; height: 500px;">
@@ -44,6 +44,9 @@
                 </div>
             </ng-template>
         </div>
+    </div>
+    <div class="col-sm">
+        <router-outlet>  </router-outlet>
     </div>
 </div>
 <ng-template #carregando>

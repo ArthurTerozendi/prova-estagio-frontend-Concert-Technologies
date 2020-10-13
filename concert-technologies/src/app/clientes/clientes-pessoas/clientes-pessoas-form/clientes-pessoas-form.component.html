@@ -1,0 +1,110 @@
+<div *ngIf="carregado; else carregando" class="container" >
+    <form action="">
+        <div class="form-row">
+            <div class="col-sm-6 mb-3">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+                <div class="invalid-feedback">
+                    Por favor insira o nome!
+                </div>
+                <div class="valid-feedback">
+                    Nome valido!
+                </div>
+            </div>
+            
+            <div class="col-sm-6 mb-3">
+                <label for="email">E-mail</label>
+                <input type="email" class="form-control" id="email" name="email" email required>
+                <div class="invalid-feedback">
+                    Por favor insira um e-mail válido!
+                </div>
+                <div class="valid-feedback">
+                    E-mail válido!
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-4 mb-3">
+                <label for="dataNascimento">Data de Nascimento</label>
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required date>
+                <div class="invalid-feedback">
+                    Por favor insira um e-mail válido!
+                </div>
+                <div class="valid-feedback">
+                    E-mail válido!
+                </div>
+            </div>
+            <div class="col-sm-2 mb-3">
+                <label for="estadoCivil"> Estado Civil </label><div class="form-check">
+                    <input class="form-check-input" type="radio" name="estadoCivil" id="estadoCivil1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      Solteira
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estadoCivil" id="estadoCivil2" value="casada">
+                    <label class="form-check-label" for="casada">
+                      Casada
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estadoCivil" id="estadoCivil3" value="divorciada">
+                    <label class="form-check-label" for="divorciada">
+                      Divorciada
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estadoCivil" id="estadoCivil3" value="viuva">
+                    <label class="form-check-label" for="viuva">
+                      Viúva
+                    </label>
+                  </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="linguagemProg"> Linguagem de Programação</label>
+                <div class="form-row">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="java" value="java">
+                        <label class="form-check-label" for="linguagemProg">Java</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="javascript" value="javascript">
+                        <label class="form-check-label" for="linguagemProg">JavaScript</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="c-sharp" value="c-sharp">
+                        <label class="form-check-label" for="linguagemProg">C#</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="php" value="php">
+                        <label class="form-check-label" for="linguagemProg">PHP</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="python" value="python">
+                        <label class="form-check-label" for="linguagemProg">Python</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="outro" value="outro">
+                        <label class="form-check-label" for="linguagemProg">Outra</label>
+                      </div>
+                </div>
+                <label for="nacionalidade"> Nacionalidade </label>
+                <div class="form-row">
+                    <select class="custom-select" id="nacionalidade" required>
+                        <option *ngFor="let paises of paises$ | async" > {{ paises.nome_pais }} </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit"> Submit </button>
+    </form>
+</div>
+
+
+<ng-template #carregando>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border m-5" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>

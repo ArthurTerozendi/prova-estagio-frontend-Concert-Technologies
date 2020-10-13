@@ -3,7 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClientesEmpresasFormComponent } from './clientes-empresas-form.component';
 
 const routes: Routes = [
-  {path: '', component: ClientesEmpresasFormComponent}
+  {path: '', component: ClientesEmpresasFormComponent},
+  {path: ':id', component: ClientesEmpresasFormComponent}
 ];
 
 @NgModule({

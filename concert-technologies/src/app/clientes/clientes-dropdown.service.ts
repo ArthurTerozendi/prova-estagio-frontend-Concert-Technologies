@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Estados } from './estados';
 import { Cidades } from './cidades';
 import { map } from 'rxjs/operators';
+import { Paises } from './clientes-pessoas/paises';
 
 @Injectable()
 export class ClientesDropdownService {
@@ -22,8 +23,7 @@ export class ClientesDropdownService {
       map((cidades : Cidades[]) => cidades.filter(c => c.estado == idEstado))
     );
   }
-
-  teste(){
-    console.log('Chegou aqui');
+  getPaises() {
+    return this.http.get<Paises[]>('/assets/dados/paises.json');
   }
 }

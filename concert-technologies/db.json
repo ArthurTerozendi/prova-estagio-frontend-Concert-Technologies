@@ -5,7 +5,7 @@
       "nome": "pessoa1",
       "email": "pessoa1@email.com",
       "dataNascimento": "10-10-2000",
-      "sexo": "M",
+      "estadoCivil": "solteiro",
       "nacionalidade": "brasil",
       "linguagemProg": "JAVA"
     },
@@ -14,7 +14,7 @@
       "nome": "pessoa2",
       "email": "pessoa2@email.com",
       "dataNascimento": "10-10-2000",
-      "sexo": "F",
+      "estadoCivil": "casado",
       "nacionalidade": "brasil",
       "linguagemProg": "JAVA"
     },
@@ -23,7 +23,7 @@
       "nome": "pessoa3",
       "email": "pessoa3@email.com",
       "dataNascimento": "10-10-2000",
-      "sexo": "F",
+      "estadoCivil": "divorciado",
       "nacionalidade": "brasil",
       "linguagemProg": "JAVA"
     }
@@ -61,6 +61,17 @@
       "bairro": "teste3",
       "cidade": "teste3 3teste",
       "estado": "MG"
+    },
+    {
+      "id": 4,
+      "nome": "dasda",
+      "cnpj": "dsads",
+      "telefone": "03154346434",
+      "cep": "01001-000",
+      "rua": "Praça da Sé",
+      "bairro": "sadsdasad",
+      "cidade": "Águas de Santa Bárbara",
+      "estado": "SP"
     }
   ]
 }

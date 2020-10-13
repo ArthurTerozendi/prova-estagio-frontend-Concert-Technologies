@@ -3,7 +3,7 @@ export interface Pessoa{
     nome : string;
     email: string;
     dataNascimento : string;
-    sexo: string;
+    estadoCivil: string;
     nacionalidade: string;
     linguagem: string;
 }
