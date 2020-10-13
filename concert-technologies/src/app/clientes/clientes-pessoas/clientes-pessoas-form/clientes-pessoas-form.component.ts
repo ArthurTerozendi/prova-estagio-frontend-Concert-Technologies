@@ -13,7 +13,7 @@ export class ClientesPessoasFormComponent implements OnInit {
 
   carregado : boolean = false;
   paises$ : Observable<Paises[]>;
-  linguagemProg : string[] = []
+  linguagemProg : string = ""
 
   constructor(
     private dropdownService : ClientesDropdownService,
@@ -31,20 +31,21 @@ export class ClientesPessoasFormComponent implements OnInit {
   }
 
   concatenarCheckbox(form) {
-    this.linguagemProg = [];
-      for (const campo in form.controls) {
-          const control = form.controls[campo];
-          if(control.value === true) {
-            this.linguagemProg.push(campo);
-          }
-      }
+    for (const campo in form.controls) {
+        const control = form.controls[campo];
+        if(control.value === true) {
+          this.linguagemProg += campo+";"
+        }
+    }
   }
 
   onSubmit(form) {
     console.log(form.value);
     this.concatenarCheckbox(form);
     console.log(this.linguagemProg);
-    //this.clientesService.adcionar(form)
+    this.clientesService.adcionar(form.value).subscribe(
+      sucesso => {console.log("sucesso") }
+    );
   }
 
 }

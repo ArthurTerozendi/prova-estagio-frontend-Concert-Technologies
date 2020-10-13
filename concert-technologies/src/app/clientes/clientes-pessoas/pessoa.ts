@@ -1,9 +1,9 @@
-export interface Pessoa{
-    id : number;
-    nome : string;
+export interface Pessoa {
+    id: number;
+    nome: string;
     email: string;
-    dataNascimento : string;
+    dataNascimento: string;
     estadoCivil: string;
     nacionalidade: string;
-    linguagem: string;
+    
 }
