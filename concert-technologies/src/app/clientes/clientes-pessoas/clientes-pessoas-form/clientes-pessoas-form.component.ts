@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ClientesDropdownService } from '../../clientes-dropdown.service';
+import { ClientesPessoasService } from '../clientes-pessoas.service';
 import { Paises } from '../paises';
 
 @Component({
@@ -12,9 +13,11 @@ export class ClientesPessoasFormComponent implements OnInit {
 
   carregado : boolean = false;
   paises$ : Observable<Paises[]>;
+  linguagemProg : string[] = []
 
   constructor(
-    private dropdownService : ClientesDropdownService
+    private dropdownService : ClientesDropdownService,
+    private clientesService : ClientesPessoasService
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +28,23 @@ export class ClientesPessoasFormComponent implements OnInit {
 
     this.paises$ = this.dropdownService.getPaises();
 
+  }
+
+  concatenarCheckbox(form) {
+    this.linguagemProg = [];
+      for (const campo in form.controls) {
+          const control = form.controls[campo];
+          if(control.value === true) {
+            this.linguagemProg.push(campo);
+          }
+      }
+  }
+
+  onSubmit(form) {
+    console.log(form.value);
+    this.concatenarCheckbox(form);
+    console.log(this.linguagemProg);
+    //this.clientesService.adcionar(form)
   }
 
 }

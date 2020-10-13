@@ -26,6 +26,7 @@ export class ClientesPessoasService {
   }
 
   adcionar(form) { 
+    console.log('oi');
     return this.http.post(this.API, form).pipe(take(1));
   }
 

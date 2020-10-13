@@ -1,9 +1,9 @@
-<div *ngIf="carregado; else carregando" class="container" >
-    <form action="">
+<div *ngIf="carregado; else carregando" class="container">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
         <div class="form-row">
             <div class="col-sm-6 mb-3">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" required>
+                <input type="text" class="form-control" id="nome" name="nome" ngModel required>
                 <div class="invalid-feedback">
                     Por favor insira o nome!
                 </div>
@@ -11,10 +11,10 @@
                     Nome valido!
                 </div>
             </div>
-            
+
             <div class="col-sm-6 mb-3">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" email required>
+                <input type="email" class="form-control" id="email" name="email" ngModel email required>
                 <div class="invalid-feedback">
                     Por favor insira um e-mail válido!
                 </div>
@@ -26,7 +26,7 @@
         <div class="form-row">
             <div class="col-sm-4 mb-3">
                 <label for="dataNascimento">Data de Nascimento</label>
-                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" required date>
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" ngModel required date>
                 <div class="invalid-feedback">
                     Por favor insira um e-mail válido!
                 </div>
@@ -35,68 +35,74 @@
                 </div>
             </div>
             <div class="col-sm-2 mb-3">
-                <label for="estadoCivil"> Estado Civil </label><div class="form-check">
-                    <input class="form-check-input" type="radio" name="estadoCivil" id="estadoCivil1" value="option1" checked>
+                <label for="estadoCivil"> Estado Civil </label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estadoCivil" ngModel id="estadoCivil1"
+                        value="solteira" checked>
                     <label class="form-check-label" for="exampleRadios1">
-                      Solteira
+                        Solteira
                     </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="estadoCivil" id="estadoCivil2" value="casada">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estadoCivil" ngModel id="estadoCivil2"
+                        value="casada">
                     <label class="form-check-label" for="casada">
-                      Casada
+                        Casada
                     </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="estadoCivil" id="estadoCivil3" value="divorciada">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estadoCivil" ngModel id="estadoCivil3"
+                        value="divorciada">
                     <label class="form-check-label" for="divorciada">
-                      Divorciada
+                        Divorciada
                     </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="estadoCivil" id="estadoCivil3" value="viuva">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="estadoCivil" ngModel id="estadoCivil3"
+                        value="viuva">
                     <label class="form-check-label" for="viuva">
-                      Viúva
+                        Viúva
                     </label>
-                  </div>
+                </div>
             </div>
             <div class="col-sm-6">
-                <label for="linguagemProg"> Linguagem de Programação</label>
+                <label for="linguagemProg"> Programador </label>
                 <div class="form-row">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="java" value="java">
-                        <label class="form-check-label" for="linguagemProg">Java</label>
+                        <input class="form-check-input" type="checkbox" name="java" id="java" ngModel value="java">
+                        <label class="form-check-label" for="java">Java</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="javascript" value="javascript">
-                        <label class="form-check-label" for="linguagemProg">JavaScript</label>
+                        <input class="form-check-input" type="checkbox" name="javascript" ngModel id="javascript" value="javascript">
+                        <label class="form-check-label" for="javascript">JavaScript</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="c-sharp" value="c-sharp">
-                        <label class="form-check-label" for="linguagemProg">C#</label>
+                        <input class="form-check-input" type="checkbox" name="c-sharp" ngModel id="c-sharp" value="c-sharp">
+                        <label class="form-check-label" for="c-sharp">C#</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="php" value="php">
-                        <label class="form-check-label" for="linguagemProg">PHP</label>
+                        <input class="form-check-input" type="checkbox" name="php" id="php" ngModel value="php">
+                        <label class="form-check-label" for="php">PHP</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="python" value="python">
-                        <label class="form-check-label" for="linguagemProg">Python</label>
+                        <input class="form-check-input" type="checkbox" name="python" ngModel id="python" value="python">
+                        <label class="form-check-label" for="python">Python</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="linguagemProg" id="outro" value="outro">
-                        <label class="form-check-label" for="linguagemProg">Outra</label>
+                        <input class="form-check-input" type="checkbox" name="outro" ngModel id="outro" value="outro">
+                        <label class="form-check-label" for="outro">Outra</label>
                       </div>
                 </div>
                 <label for="nacionalidade"> Nacionalidade </label>
                 <div class="form-row">
-                    <select class="custom-select" id="nacionalidade" required>
-                        <option *ngFor="let paises of paises$ | async" > {{ paises.nome_pais }} </option>
+                    <select class="custom-select" id="nacionalidade" name="nacionalidade" ngModel required>
+                        <option *ngFor="let paises of paises$ | async"> {{ paises.nome_pais }} </option>
                     </select>
                 </div>
             </div>
         </div>
         <button class="btn btn-primary" type="submit"> Submit </button>
+        <button class="btn btn-cancel"> Cancelar </button>
     </form>
 </div>
 
