@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClientesComponent } from './clientes.component';
 import { ClientesService } from './clientes.service';
+import { ClientesDropdownService } from './clientes-dropdown.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 @NgModule({
@@ -14,10 +16,12 @@ import { ClientesService } from './clientes.service';
   imports: [
     CommonModule,
     ClientesRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ModalModule.forRoot()
   ],
   providers: [
-    ClientesService
+    ClientesService,
+    ClientesDropdownService
   ]
 })
 export class ClientesModule { }

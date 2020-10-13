@@ -1,20 +1,26 @@
-<div style="margin-right: 20px; margin-top: 10px;" *ngIf="carregado; else carregando" >
-    <form class="needs-validation" novalidate [formGroup]="form">
+<div style="margin: 30px;" *ngIf="carregado; else carregando" >
+    <form class="needs-validation col-sm" novalidate [formGroup]="form">
         <div class="form-row">
             <div class="col-sm mb-3">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" formControlName="nome" [ngClass]="{ 'is-invalid': hasTouched('nome') && hasError('nome')}">
+                <input type="text" class="form-control" id="nome" formControlName="nome" [ngClass]="aplicaCss('nome')">
                 <div class="invalid-feedback">
-                    Por favor insira o nome
+                    Por favor insira o nome!
+                </div>
+                <div class="valid-feedback">
+                    Nome valido!
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="cnpj">CNPJ</label>
-                <input type="text" class="form-control" id="cnpj" formControlName="cnpj" [ngClass]="{ 'is-invalid': hasTouched('cnpj') && hasError('cnpj')}">
+                <input type="text" class="form-control" id="cnpj" formControlName="cnpj" [ngClass]="aplicaCss('cnpj')">
                 <div class="invalid-feedback">
-                    Por favor insira o cnpj
+                    Por favor insira o CNPJ!
+                </div>
+                <div class="valid-feedback">
+                    CNPJ valido!
                 </div>
             </div>
             <div class="col-md-4 mb-3">
@@ -23,9 +29,12 @@
             </div>
             <div class="col-md-4 mb-3">
                 <label for="cep">CEP</label>
-                <input type="text" class="form-control" id="cep" formControlName="cep" [ngClass]="{ 'is-invalid': hasTouched('cep') && hasError('cep')}">
+                <input type="text" class="form-control" id="cep" formControlName="cep" [ngClass]="aplicaCss('cep')">
                 <div class="invalid-feedback">
-                    Por favor insira o cep
+                    Por favor insira o CEP!
+                </div>
+                <div class="valid-feedback">
+                    CEP valido!
                 </div>
             </div>
         </div>
@@ -33,52 +42,54 @@
         <div class="form-row">
             <div class="col-md-12 mb-3">
                 <label for="rua">Rua</label>
-                <input type="text" class="form-control" id="rua" formControlName="rua" [ngClass]="{ 'is-invalid': hasTouched('rua') && hasError('rua')}">
+                <input type="text" class="form-control" id="rua" formControlName="rua" [ngClass]="aplicaCss('rua')">
                 <div class="invalid-feedback">
-                    Por favor insira o rua
+                    Por favor insira a rua1
+                </div>
+                <div class="valid-feedback">
+                    Rua valido!
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="bairro">Bairro</label>
-                <input type="text" class="form-control" id="bairro" formControlName="bairro" [ngClass]="{ 'is-invalid': hasTouched('bairro') && hasError('bairro')}">
+                <input type="text" class="form-control" id="bairro" formControlName="bairro" [ngClass]="aplicaCss('bairro')">
                 <div class="invalid-feedback">
-                    Por favor insira o bairro
+                    Por favor insira o bairro!
+                </div>
+                <div class="valid-feedback">
+                    Bairro valido!
                 </div>
             </div>
 
             <div class="col-md-4 mb-3">
                 <label for="cidade">Cidade</label>
-                <select class="custom-select" id="cidade" formControlName="cidade" [ngClass]="{ 'is-invalid': hasTouched('cidade') && hasError('cidade')}">
-                    <option> ... </option>
+                <select class="custom-select" id="cidade" formControlName="cidade" [ngClass]="aplicaCss('cidade')">
+                    <option *ngFor="let cidades of cidades " [value]="cidades.nome"> {{ cidades.nome }} </option>
                 </select>
                 <div class="invalid-feedback">
-                    Por favor insira o cidade
+                    Por favor insira a cidade!
+                </div>
+                <div class="valid-feedback">
+                    Cidade valido!
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="estado">Estado</label>
-                <select class="custom-select" id="estado" formControlName="estado" [ngClass]="{ 'is-invalid': hasTouched('estado') && hasError('estado')}">
-                    <option> ... </option>
+                <select class="custom-select" id="estado" formControlName="estado"[ngClass]="aplicaCss('estado')">
+                    <option *ngFor="let estados of estados"  [value]="estados.sigla"> {{ estados.nome }} </option>
                 </select>
                 <div class="invalid-feedback">
-                    Por favor insira o estado
+                    Por favor insira o estado!
                 </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" formControlName="termos" value="" id="termos" [ngClass]="{ 'is-invalid': hasTouched('termos') && hasError('termos')}">
-                <label class="form-check-label" for="termos">
-                    Eu aceito os termos e condições.
-                </label>
-                <div class="invalid-feedback">
-                    Por favor insira o termos
+                <div class="valid-feedback">
+                    Estado valido!
                 </div>
             </div>
         </div>
         <button class="btn btn-primary" type="submit" (click)="onSubmit()"> Submit </button>
+        <button class="btn btn-cancel" (click)="onCancelar()"> Cancelar </button>
     </form>
 </div>
 

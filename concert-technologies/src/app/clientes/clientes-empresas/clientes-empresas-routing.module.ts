@@ -4,9 +4,9 @@ import { ClientesEmpresasFormModule } from './clientes-empresas-form/clientes-em
 import { ClientesEmpresasComponent } from './clientes-empresas.component';
 
 const routes: Routes = [
-  {path: '', component: ClientesEmpresasComponent, children: [
-    {path: 'novo', loadChildren: () => import('./clientes-empresas-form/clientes-empresas-form.module').then(m => ClientesEmpresasFormModule)}
-  ]}
+  {path: '', component: ClientesEmpresasComponent},
+  {path: 'novo', loadChildren: () => import('./clientes-empresas-form/clientes-empresas-form.module').then(m => ClientesEmpresasFormModule)},
+  {path: 'editar/:id', loadChildren: () => import('./clientes-empresas-form/clientes-empresas-form.module').then(m => ClientesEmpresasFormModule)}
 ];
 
 @NgModule({

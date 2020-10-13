@@ -6,10 +6,9 @@ import { ClientesPessoasModule } from './clientes-pessoas/clientes-pessoas.modul
 import { ClientesComponent } from './clientes.component';
 
 const routes: Routes = [
-  {path: '', component: ClientesComponent, children: [
-    {path: 'pessoas', loadChildren: () => import('./clientes-pessoas/clientes-pessoas.module').then(m =>ClientesPessoasModule)},
-    {path: 'empresas', loadChildren: () => import('./clientes-empresas/clientes-empresas.module').then(m => ClientesEmpresasModule)}
-  ]}
+  {path: '', component: ClientesComponent},
+  {path: 'pessoas', loadChildren: () => import('./clientes-pessoas/clientes-pessoas.module').then(m =>ClientesPessoasModule)},
+  {path: 'empresas', loadChildren: () => import('./clientes-empresas/clientes-empresas.module').then(m => ClientesEmpresasModule)}
 ];
 
 @NgModule({

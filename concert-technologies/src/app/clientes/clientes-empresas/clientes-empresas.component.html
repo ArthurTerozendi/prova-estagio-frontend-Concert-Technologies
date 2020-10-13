@@ -1,5 +1,5 @@
 <div class="row" *ngIf="carregado; else carregando">
-    <div class="card col" style="border: 1px;">
+    <div class="card col-lg" style="border: 1px;">
         <div class="card-header">
             <div class="float-left">
                 <h4>Empresas</h4>
@@ -23,10 +23,11 @@
                         <td> {{ empresa.nome }} </td>
                         <td>
                             <span class="float-right">
-                                <button class="btn btn-outline-warning mb-1 btn-sm">
-                                    Atualizar</button>
+                                <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEditar(empresa.id)">
+                                    Editar </button>
 
-                                <button class="btn btn-outline-danger mb-1 btn-sm"> Remover
+                                <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDeletar(empresa.id)">
+                                    Remover
                                 </button>
                             </span>
                         </td>
@@ -42,14 +43,19 @@
             </ng-template>
         </div>
     </div>
-    <div>
-        <router-outlet></router-outlet>
-    </div>
 </div>
 <ng-template #carregando>
     <div class="d-flex justify-content-center">
         <div class="spinner-border m-5" role="status">
             <span class="sr-only">Loading...</span>
         </div>
+    </div>
+</ng-template>
+
+<ng-template #deletarModal>
+    <div class="modal-body text-center">
+        <p>Você tem certeza que quer deletar?</p>
+        <button type="button" class="btn btn-default" (click)="confirmar()">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="cancelar()">No</button>
     </div>
 </ng-template>
