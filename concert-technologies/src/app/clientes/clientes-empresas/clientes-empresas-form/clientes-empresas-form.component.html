@@ -1,34 +1,31 @@
 <div style="margin-right: 20px; margin-top: 10px;" *ngIf="carregado; else carregando" >
-    <form class="needs-validation col-sm" novalidate [formGroup]="form">
+    <form class="needs-validation" novalidate [formGroup]="form">
         <div class="form-row">
-            <div class="col-md mb-3">
+            <div class="col-sm mb-3">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" formControlName="nome">
-                <div class="valid-feedback">
-                    Looks good!
+                <input type="text" class="form-control" id="nome" formControlName="nome" [ngClass]="{ 'is-invalid': hasTouched('nome') && hasError('nome')}">
+                <div class="invalid-feedback">
+                    Por favor insira o nome
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="cnpj">CNPJ</label>
-                <input type="text" class="form-control" id="cnpj" formControlName="cnpj">
-                <div class="valid-feedback">
-                    Looks good!
+                <input type="text" class="form-control" id="cnpj" formControlName="cnpj" [ngClass]="{ 'is-invalid': hasTouched('cnpj') && hasError('cnpj')}">
+                <div class="invalid-feedback">
+                    Por favor insira o cnpj
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="telefone">Telefone</label>
                 <input type="tel" class="form-control" id="telefone" formControlName="telefone">
-                <div class="invalid-feedback">
-                    Please provide a valid city.
-                </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="cep">CEP</label>
-                <input type="text" class="form-control" id="cep" formControlName="cep">
+                <input type="text" class="form-control" id="cep" formControlName="cep" [ngClass]="{ 'is-invalid': hasTouched('cep') && hasError('cep')}">
                 <div class="invalid-feedback">
-                    Please select a valid state.
+                    Por favor insira o cep
                 </div>
             </div>
         </div>
@@ -36,48 +33,48 @@
         <div class="form-row">
             <div class="col-md-12 mb-3">
                 <label for="rua">Rua</label>
-                <input type="text" class="form-control" id="rua" formControlName="rua">
+                <input type="text" class="form-control" id="rua" formControlName="rua" [ngClass]="{ 'is-invalid': hasTouched('rua') && hasError('rua')}">
                 <div class="invalid-feedback">
-                    Please select a valid state.
+                    Por favor insira o rua
                 </div>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="bairro">Bairro</label>
-                <input type="text" class="form-control" id="bairro" formControlName="bairro">
+                <input type="text" class="form-control" id="bairro" formControlName="bairro" [ngClass]="{ 'is-invalid': hasTouched('bairro') && hasError('bairro')}">
                 <div class="invalid-feedback">
-                    Please select a valid state.
+                    Por favor insira o bairro
                 </div>
             </div>
 
             <div class="col-md-4 mb-3">
                 <label for="cidade">Cidade</label>
-                <select class="custom-select" id="cidade" formControlName="cidade">
+                <select class="custom-select" id="cidade" formControlName="cidade" [ngClass]="{ 'is-invalid': hasTouched('cidade') && hasError('cidade')}">
                     <option> ... </option>
                 </select>
                 <div class="invalid-feedback">
-                    Please provide a valid zip.
+                    Por favor insira o cidade
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <label for="estado">Estado</label>
-                <select class="custom-select" id="estado" formControlName="estado">
+                <select class="custom-select" id="estado" formControlName="estado" [ngClass]="{ 'is-invalid': hasTouched('estado') && hasError('estado')}">
                     <option> ... </option>
                 </select>
                 <div class="invalid-feedback">
-                    Please provide a valid zip.
+                    Por favor insira o estado
                 </div>
             </div>
         </div>
         <div class="form-group">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                <label class="form-check-label" for="invalidCheck">
+                <input class="form-check-input" type="checkbox" formControlName="termos" value="" id="termos" [ngClass]="{ 'is-invalid': hasTouched('termos') && hasError('termos')}">
+                <label class="form-check-label" for="termos">
                     Eu aceito os termos e condições.
                 </label>
                 <div class="invalid-feedback">
-                    You must agree before submitting.
+                    Por favor insira o termos
                 </div>
             </div>
         </div>

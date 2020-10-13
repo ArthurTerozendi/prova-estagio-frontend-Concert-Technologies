@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ClientesEmpresasFormComponent implements OnInit {
   carregado : boolean = false;
-  
+  submitted = false;
   form : FormGroup;
 
   constructor(
@@ -30,12 +30,31 @@ export class ClientesEmpresasFormComponent implements OnInit {
     bairro: [null, Validators.required],
     cidade: [null, Validators.required],
     estado: [null, Validators.required],
+    termos: [null, Validators.required]
     });
 
   }
 
   onSubmit(){
-    console.log(this.form.value);
+    console.log(this.form);
+
+    if (this.form.valid) {
+      this.submitted = true;
+
+      console.log("Valido");
+    } else {
+      this.submitted = false;
+      const controle = this.form;
+      controle.markAllAsTouched();
+    }
   }
 
+  hasError(campo: string) {
+    return this.form.get(campo).errors;
+  }
+
+  hasTouched(campo: string) {
+    return this.form.get(campo).touched;
+  }
+  
 }
