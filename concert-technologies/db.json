@@ -1,21 +1,33 @@
 {
-  "posts": [
+  "pessoas": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "id": "1",
+      "nome": "pessoa1",
+      "email": "pessoa1@email.com",
+      "dataNascimento": "10-10-2000",
+      "sexo": "M",
+      "nacionalidade": "brasil",
+      "linguagemProg": "JAVA"
+    },
+    {
+      "id": "2",
+      "nome": "pessoa2",
+      "email": "pessoa2@email.com",
+      "dataNascimento": "10-10-2000",
+      "sexo": "F",
+      "nacionalidade": "brasil",
+      "linguagemProg": "JAVA"
+    },
+    {
+      "id": "3",
+      "nome": "pessoa3",
+      "email": "pessoa3@email.com",
+      "dataNascimento": "10-10-2000",
+      "sexo": "F",
+      "nacionalidade": "brasil",
+      "linguagemProg": "JAVA"
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  },
   "empresas": [
     {
       "id": 1,

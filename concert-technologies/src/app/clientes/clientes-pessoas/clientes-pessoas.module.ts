@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ClientesPessoasRoutingModule } from './clientes-pessoas-routing.module';
 import { ClientesPessoasComponent } from './clientes-pessoas.component';
+import { ClientesPessoasService } from './clientes-pessoas.service';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { ClientesPessoasComponent } from './clientes-pessoas.component';
   imports: [
     CommonModule,
     ClientesPessoasRoutingModule
-  ]
+  ],
+  providers: [ClientesPessoasService]
 })
 export class ClientesPessoasModule { }

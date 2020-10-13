@@ -1,5 +1,50 @@
-<div *ngIf="carregado; else carregando" >
-    <p>clientes-pessoas works!</p>
+<div class="row" *ngIf="carregado; else carregando">
+    <div class="card col-lg" style="border: 1px;">
+        <div class="card-header">
+            <div class="float-left">
+                <h4>Pessoas</h4>
+            </div>
+            <div class="float-right">
+                <button class="btn btn-primary">Cadastrar Pessoa</button>
+
+                <button class="btn btn-secondary">Atualizar</button>
+            </div>
+        </div>
+        <div class="card-body" style="overflow-y: scroll; height: 500px;">
+            <table class="table table-hover" *ngIf="pessoas$  | async as pessoas; else loading">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pessoa of pessoas">
+                        <td> {{ pessoa.id }} </td>
+                        <td> {{ pessoa.nome }} </td>
+                        <td>
+                            <span class="float-right">
+                                <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEditar(pessoa.id)">
+                                    Editar </button>
+
+                                <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDeletar(pessoa.id)">
+                                    Remover
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #loading>
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
 </div>
 <ng-template #carregando>
     <div class="d-flex justify-content-center">
@@ -7,4 +52,22 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
+</ng-template>
+
+<ng-template #deletarModal>
+    <div class="modal-body text-center">
+        <p>Você tem certeza que quer deletar?</p>
+        <button type="button" class="btn btn-default" (click)="confirmar()">Yes</button>
+        <button type="button" class="btn btn-primary" (click)="cancelar()">No</button>
+    </div>
+</ng-template>
+
+
+<ng-template #sucessoModal>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+       Pessoa removida com sucesso!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="fechar()" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 </ng-template>

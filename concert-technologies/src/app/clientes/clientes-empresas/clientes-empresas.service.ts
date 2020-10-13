@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Output } from '@angular/core';
+import { Injectable} from '@angular/core';
 
 import { environment } from 'src/environments/environment';
-import { Empresas } from './clientes-empresas/empresas';
+import { Empresas } from './empresas';
 import { delay, take } from 'rxjs/operators'
 
 @Injectable()
-export class ClientesService {
+export class ClientesEmpresasService {
 
   private API = `${environment.API}empresas`
 

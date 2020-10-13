@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 import { Observable } from 'rxjs';
-import { ClientesService } from '../clientes.service';
+import { ClientesEmpresasService } from './clientes-empresas.service';
 import { Empresas } from './empresas';
 
 @Component({
@@ -18,12 +18,12 @@ export class ClientesEmpresasComponent implements OnInit {
   carregado: boolean = false;
   modalDeletarRef: BsModalRef;
   modalSucessoRef: BsModalRef;
-  idCursoSelecionado;
+  idEmpresaSelecionada;
   @ViewChild('deletarModal') deletarModal;
   @ViewChild('sucessoModal') sucessoModal;
 
   constructor(
-    private clientesService: ClientesService,
+    private clientesService: ClientesEmpresasService,
     private router: Router,
     private route: ActivatedRoute,
     private modalService: BsModalService
@@ -47,12 +47,12 @@ export class ClientesEmpresasComponent implements OnInit {
   }
 
   onDeletar(id) {
-    this.idCursoSelecionado = id;
+    this.idEmpresaSelecionada = id;
     this.modalDeletarRef = this.modalService.show(this.deletarModal, { class: 'modal-sm' });
   }
 
   confirmar() {
-    this.clientesService.deletar(this.idCursoSelecionado).subscribe(
+    this.clientesService.deletar(this.idEmpresaSelecionada).subscribe(
       () => {
         this.onRefresh();
         this.modalSucessoRef = this.modalService.show(this.sucessoModal, { class: 'modal-sm' });
