@@ -14,18 +14,20 @@ import { Empresas } from './empresas';
 })
 export class ClientesEmpresasComponent implements OnInit {
 
-  empresas$ : Observable<Empresas[]>;
-  carregado : boolean = false;
-  modalDeletarRef : BsModalRef;
+  empresas$: Observable<Empresas[]>;
+  carregado: boolean = false;
+  modalDeletarRef: BsModalRef;
+  modalSucessoRef: BsModalRef;
   idCursoSelecionado;
   @ViewChild('deletarModal') deletarModal;
+  @ViewChild('sucessoModal') sucessoModal;
 
   constructor(
-    private clientesService : ClientesService,
-    private router : Router,
-    private route : ActivatedRoute,
+    private clientesService: ClientesService,
+    private router: Router,
+    private route: ActivatedRoute,
     private modalService: BsModalService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -40,24 +42,32 @@ export class ClientesEmpresasComponent implements OnInit {
     this.empresas$ = this.clientesService.listar();
   }
 
-  onEditar(id){
+  onEditar(id) {
     this.router.navigate(['../editar', id], { relativeTo: this.route });
   }
 
-  onDeletar(id){
+  onDeletar(id) {
     this.idCursoSelecionado = id;
-    this.modalDeletarRef = this.modalService.show(this.deletarModal, {class: 'modal-sm'});
+    this.modalDeletarRef = this.modalService.show(this.deletarModal, { class: 'modal-sm' });
   }
 
-  confirmar(){
+  confirmar() {
     this.clientesService.deletar(this.idCursoSelecionado).subscribe(
-      () => this.onRefresh(),
+      () => {
+        this.onRefresh();
+        this.modalSucessoRef = this.modalService.show(this.sucessoModal, { class: 'modal-sm' });
+      },
       error => console.error(error)
     );
     this.modalDeletarRef.hide();
+    
   }
 
-  cancelar(){
+  fechar() {
+    this.modalSucessoRef.hide();
+  }
+
+  cancelar() {
     this.modalDeletarRef.hide();
   }
 
