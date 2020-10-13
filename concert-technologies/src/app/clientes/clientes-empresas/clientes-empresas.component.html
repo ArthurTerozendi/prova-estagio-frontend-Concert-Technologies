@@ -1,5 +1,47 @@
 <div *ngIf="carregado; else carregando" >
-    <p>clientes-empresa works!</p>
+    <div class="card">
+        <div class="card-header">
+            <div class="float-left">
+                <h4>Empresas</h4>
+            </div>
+            <div class="float-right">
+                <button class="btn btn-primary" [routerLink]="['../novo']">Nova Empresa</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover" *ngIf="empresas$  | async as empresas; else loading" >
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Empresas</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let empresa of empresas">
+                        <td> {{ empresa.id }} </td>
+                        <td> {{ empresa.nome }} </td>
+                        <td>
+                            <span class="float-right">
+                                <button class="btn btn-outline-warning mb-1 btn-sm">
+                                    Atualizar</button>
+    
+                                <button class="btn btn-outline-danger mb-1 btn-sm"> Remover
+                                </button>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #loading>
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
 </div>
 <ng-template #carregando>
     <div class="d-flex justify-content-center">

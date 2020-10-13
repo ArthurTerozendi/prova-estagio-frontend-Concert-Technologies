@@ -5,5 +5,12 @@
     "comments": [
       { "id": 1, "body": "some comment", "postId": 1 }
     ],
-    "profile": { "name": "typicode" }
+    "profile": { "name": "typicode" },
+
+    "empresas": [
+      {"id": 1, "nome": "teste", "CNPJ" : "teste", "telefone": "1111-2222", "cep": "11111-222", "rua": "teste", "bairro": "teste", "cidade": "teste teste", "estado": "MG"},
+      {"id": 2, "nome": "teste2", "CNPJ" : "teste2", "telefone": "2222-3333", "cep": "22222-333", "rua": "teste2", "bairro": "teste2", "cidade": "teste2 teste2", "estado": "MG"},
+      {"id": 3, "nome": "teste3", "CNPJ" : "teste3", "telefone": "3333-4444", "cep": "33333-444", "rua": "teste3", "bairro": "teste3", "cidade": "teste3 3teste", "estado": "MG"},
+      {"id": 4, "nome": "teste4", "CNPJ" : "teste4", "telefone": "4444-5555", "cep": "44444-555", "rua": "teste4", "bairro": "teste4", "cidade": "teste4 teste4", "estado": "MG"}
+    ]
 }

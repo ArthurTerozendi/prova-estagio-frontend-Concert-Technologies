@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.sass']
+  styleUrls: ['./clientes.component.sass'],
+  preserveWhitespaces: true
 })
 export class ClientesComponent implements OnInit {
 
