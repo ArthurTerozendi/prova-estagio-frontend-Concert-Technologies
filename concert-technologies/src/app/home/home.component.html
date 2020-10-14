@@ -1,5 +1,25 @@
 <div *ngIf="carregado; else carregando">
-    <p>home works</p>
+
+    <div class="container" style="vertical-align: middle; text-align: center;">
+        <div class="row" style="margin-top: 20%;">
+            <div class="col">
+                <div class="list-group">
+                    <h2> <a class="list-group-item list-group-item-action" [routerLink]="['../clientes/empresas']" >Empresas</a> </h2>
+                </div>
+            </div>
+            <div class="col">
+                <div class="list-group" >
+                    <h2> <a class="list-group-item list-group-item-action" [routerLink]="['../clientes/pessoas']" > Pessoas </a> </h2>
+                </div>
+            </div>
+            <div class="col">
+                <div class="list-group">
+                    <h2> <a class="list-group-item list-group-item-action" [routerLink]="['../mapa']"> Mapa </a> </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <ng-template #carregando>

@@ -17,4 +17,8 @@ export class HomeComponent implements OnInit {
     }, 1200);
   }
 
+  clicou() {
+    console.log('clicou');
+  }
+
 }
