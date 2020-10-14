@@ -3,18 +3,18 @@
         <div class="form-row">
             <div class="col-sm-6 mb-3">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome"  name="nome" [(ngModel)]="pessoa.nome" required>
+                <input type="text" class="form-control" id="nome"  name="nome" #nome="ngModel" [(ngModel)]="pessoa.nome" required [ngClass]="aplicaCss(nome)">
                 <div class="invalid-feedback">
                     Por favor insira o nome!
                 </div>
                 <div class="valid-feedback">
-                    Nome valido!
+                    Nome válido!
                 </div>
             </div>
 
             <div class="col-sm-6 mb-3">
                 <label for="email">E-mail</label>
-                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="pessoa.email" email required>
+                <input type="email" class="form-control" id="email" name="email" #email="ngModel" [(ngModel)]="pessoa.email" email required [ngClass]="aplicaCss(email)">
                 <div class="invalid-feedback">
                     Por favor insira um e-mail válido!
                 </div>
@@ -26,40 +26,36 @@
         <div class="form-row">
             <div class="col-sm-4 mb-3">
                 <label for="dataNascimento">Data de Nascimento</label>
-                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" [(ngModel)]="pessoa.dataNascimento" required date>
+                <input type="date" class="form-control" id="dataNascimento" name="dataNascimento" #data="ngModel" [(ngModel)]="pessoa.dataNascimento" required date [ngClass]="aplicaCss(data)">
                 <div class="invalid-feedback">
-                    Por favor insira um e-mail válido!
+                    Por favor insira uma data!
                 </div>
                 <div class="valid-feedback">
-                    E-mail válido!
+                    Data válida!
                 </div>
             </div>
             <div class="col-sm-2 mb-3">
                 <label for="estadoCivil"> Estado Civil </label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="estadoCivil" [(ngModel)]="pessoa.estadoCivil"  id="estadoCivil1"
-                        value="solteira" checked>
+                    <input class="form-check-input" type="radio" name="estadoCivil" [(ngModel)]="pessoa.estadoCivil"  id="estadoCivil1" value="solteira" checked>
                     <label class="form-check-label" for="exampleRadios1">
                         Solteira
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="estadoCivil" [(ngModel)]="pessoa.estadoCivil" id="estadoCivil2"
-                        value="casada">
+                    <input class="form-check-input" type="radio" name="estadoCivil" [(ngModel)]="pessoa.estadoCivil" id="estadoCivil2" value="casada">
                     <label class="form-check-label" for="casada">
                         Casada
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="estadoCivil" [(ngModel)]="pessoa.estadoCivil" id="estadoCivil3"
-                        value="divorciada">
+                    <input class="form-check-input" type="radio" name="estadoCivil" [(ngModel)]="pessoa.estadoCivil" id="estadoCivil3" value="divorciada">
                     <label class="form-check-label" for="divorciada">
                         Divorciada
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="estadoCivil" [(ngModel)]="pessoa.estadoCivil" id="estadoCivil3"
-                        value="viuva">
+                    <input class="form-check-input" type="radio" name="estadoCivil" [(ngModel)]="pessoa.estadoCivil" id="estadoCivil3" value="viuva">
                     <label class="form-check-label" for="viuva">
                         Viúva
                     </label>
@@ -95,10 +91,15 @@
                 </div>
                 <label for="nacionalidade"> Nacionalidade </label>
                 <div class="form-row">
-                    <select class="custom-select" id="nacionalidade" [value]="pessoa.nacionalidade" name="nacionalidade" [ngModel]="pessoa.nacionalidade">
-                        <option>  </option>
-                        <option *ngFor="let paises of paises$ | async"> {{ paises.nome_pais }} </option>
+                    <select class="custom-select" id="nacionalidade" name="nacionalidade" [ngModel]="pessoa.nacionalidade" #nacionalidade="ngModel" [ngClass]="aplicaCss(nacionalidade)" required>
+                        <option *ngFor="let paises of paises$ | async" [value]="paises.sigla"> {{ paises.nome_pais }} </option>
                     </select>
+                    <div class="invalid-feedback">
+                        Por favor insira um país!
+                    </div>
+                    <div class="valid-feedback">
+                        País válido!
+                    </div>
                 </div>
             </div>
         </div>

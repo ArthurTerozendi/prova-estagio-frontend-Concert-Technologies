@@ -17,13 +17,12 @@ export class ClientesPessoasFormComponent implements OnInit {
   carregado : boolean = false;
   paises$ : Observable<Paises[]>;
   linguagemProg : string = "";
-
   pessoa : Pessoa = {
     id: null,
     nome: null,
     email: null,
     dataNascimento: null,
-    estadoCivil: null,
+    estadoCivil: 'solteira',
     nacionalidade: null,
     linguagemProg: {
       csharp: null,
@@ -54,90 +53,81 @@ export class ClientesPessoasFormComponent implements OnInit {
       map(params => params.id),
       switchMap(id => this.clientesService.carregarComId(id))
     ).subscribe(pessoa =>this.atualizarForm(pessoa));
-  }
-
-  formatarCheckBox(linguagens) {
-    if(linguagens.csharp.value == true){
-      linguagens.csharp = 'csharp'
-    }
-    if(linguagens.java.value == true){
-      linguagens.java = 'java'
-    }
-    if(linguagens.javascript.value == true){
-      linguagens.javascript = 'javascript'
-    }
-    if(linguagens.php.value == true){
-      linguagens.php = 'php'
-    }
-    if(linguagens.outro.value == true){
-      linguagens.outro = 'outro'
-    }
-    if(linguagens.python.value == true){
-      linguagens.python = 'python'
-    }
-
-    return linguagens;
-  }
+  } 
   atualizarForm(pessoa) {
-    console.log(pessoa.linguagemProg);
-
-    let linguagens = this.formatarCheckBox(pessoa.linguagemProg);
-    console.log(linguagens);
     this.pessoa = {
       id: pessoa.id,
       nome: pessoa.nome,
       email: pessoa.email,
       dataNascimento: pessoa.dataNascimento,
       estadoCivil: pessoa.estadoCivil,
-      nacionalidade: "Brasil",
+      nacionalidade: pessoa.nacionalidade,
       linguagemProg: {
-        csharp: linguagens.csharp,
-        java: linguagens.java,
-        javascript: linguagens.javascript,
-        outro: linguagens.outro,
-        php: linguagens.php,
-        python: linguagens.python
-    }
+        csharp: pessoa.linguagemProg.csharp,
+        java: pessoa.linguagemProg.java,
+        javascript: pessoa.linguagemProg.javascript,
+        outro: pessoa.linguagemProg.outro,
+        php: pessoa.linguagemProg.php,
+        python: pessoa.linguagemProg.python
+      }
     };
   }
 
   onSubmit(form) {
-    console.log(this.pessoa);
-    console.log(form.value);
-    if (!form.value.id) {
-      this.clientesService.adcionar(this.pessoa).subscribe(
-        sucesso => {
-          this.router.navigate(['/clientes/pessoas']);
-        }
-      );
+    console.log(this.route.snapshot.params.id != null);
+    if(form.valid){
+      if(this.route.snapshot.params.id != null){
+        this.clientesService.update(this.pessoa).subscribe(
+          sucesso => {
+            console.log('sucesso');
+            this.router.navigate(['/clientes/pessoas']);
+          },
+          error => console.error(error),
+          () => console.log("upadate")
+        )
+      } else {
+        this.clientesService.adcionar(this.pessoa).subscribe(
+              sucesso => {
+                this.router.navigate(['/clientes/pessoas']);
+              }
+            );
+      }
     }
-    else {
+    // console.log(this.pessoa);
+    // console.log(form.value);
+    // if (!form.value.id) {
+    //   this.clientesService.adcionar(this.pessoa).subscribe(
+    //     sucesso => {
+    //       this.router.navigate(['/clientes/pessoas']);
+    //     }
+    //   );
+    // }
+    // else {
       //this.clientesService.update(form.value).subscribe(
         //sucesso => {
           //console.log('sucesso');
           //this.router.navigate(['/clientes/empresas']);
         //},
       //)
-      console.log(form.value);
-    }
+    // }
   }
 
-  hasError(campo: string, form) {
-    return form.get(campo).errors;
+  hasError(campo) {
+    return campo.errors;
   }
 
-  hasTouched(campo: string, form) {
-    return form.get(campo).touched;
+  hasTouched(campo) {
+    return campo.touched;
   }
 
-  hasValid(campo: string, form) {
-    return form.get(campo).valid;
+  hasValid(campo) {
+    return campo.valid;
   }
 
-  aplicaCss(campo, form) {
-    if (this.hasTouched(campo, form) && this.hasError(campo, form)) {
+  aplicaCss(campo) {
+    if (this.hasTouched(campo) && this.hasError(campo) && !this.hasValid(campo)) {
       return 'is-invalid';
-    } else if (this.hasValid(campo, form) && !this.hasError(campo, form)) {
+    } else if (this.hasValid(campo) && !this.hasError(campo)) {
       return 'is-valid';
     }
   }
