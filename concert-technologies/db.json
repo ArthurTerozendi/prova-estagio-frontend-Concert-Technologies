@@ -1,90 +1,52 @@
 {
   "pessoas": [
     {
-      "id": "1",
-      "nome": "pessoa1",
-      "email": "pessoa1@email.com",
-      "dataNascimento": "10-10-2000",
-      "estadoCivil": "solteiro",
-      "nacionalidade": "brasil",
-      "linguagemProg": [
-        {
-          "c-sharp": true,
-          "java": true,
-          "javascript": true,
-          "outro": true,
-          "php": "",
-          "python": ""
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "nome": "pessoa2",
-      "email": "pessoa2@email.com",
-      "dataNascimento": "10-10-2000",
-      "estadoCivil": "casado",
-      "nacionalidade": "brasil",
-      "linguagemProg": [
-        {
-          "c-sharp": true,
-          "java": true,
-          "javascript": true,
-          "outro": true,
-          "php": "",
-          "python": ""
-        }
-      ]
-    },
-    {
-      "id": "3",
-      "nome": "pessoa3",
-      "email": "pessoa3@email.com",
-      "dataNascimento": "10-10-2000",
-      "estadoCivil": "divorciado",
-      "nacionalidade": "brasil",
-      "linguagemProg": [
-        {
-          "c-sharp": true,
-          "java": true,
-          "javascript": true,
-          "outro": true,
-          "php": "",
-          "python": ""
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "nome": "Arthur",
-      "email": "arthur.ginmli@gmail.com",
-      "dataNascimento": "2000-02-12",
-      "estadoCivil": "solteira",
-      "linguagemProg": {
-        "java": true,
-        "javascript": true,
-        "c-sharp": "",
-        "php": "",
-        "python": "",
-        "outro": ""
-      },
-      "nacionalidade": "Antígua e Barbuda"
-    },
-    {
-      "nome": "a",
+      "id": 1,
+      "nome": "dasdad",
       "email": "arthurterozendi@gmail.com",
-      "dataNascimento": "2011-02-12",
-      "estadoCivil": "casada",
+      "dataNascimento": "2010-01-17",
+      "estadoCivil": "divorciada",
+      "nacionalidade": null,
       "linguagemProg": {
-        "java": "",
-        "javascript": "",
-        "c-sharp": "",
-        "php": "",
-        "python": "",
-        "outro": true
-      },
-      "nacionalidade": "Kiribati",
-      "id": "SJO4DLn"
+        "csharp": true,
+        "java": null,
+        "javascript": true,
+        "outro": null,
+        "php": null,
+        "python": null
+      }
+    },
+    {
+      "id": 2,
+      "nome": "dasdad",
+      "email": "arthurterozendi@gmail.com",
+      "dataNascimento": "2010-01-17",
+      "estadoCivil": "divorciada",
+      "nacionalidade": null,
+      "linguagemProg": {
+        "csharp": true,
+        "java": null,
+        "javascript": true,
+        "outro": null,
+        "php": null,
+        "python": null
+      }
+    },
+    {
+      "id": 3,
+      "nome": "Julesca",
+      "email": "julesca@gmail.com",
+      "dataNascimento": "1997-09-18",
+      "estadoCivil": "solteira",
+      "nacionalidade": null,
+      "linguagemProg": {
+        "csharp": true,
+        "java": true,
+        "javascript": null,
+        "outro": null,
+        "php": true,
+        "python": true
+      }
     }
   ],
   "empresas": [

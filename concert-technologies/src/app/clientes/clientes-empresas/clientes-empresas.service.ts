@@ -8,7 +8,7 @@ import { delay, take } from 'rxjs/operators'
 @Injectable()
 export class ClientesEmpresasService {
 
-  private API = `${environment.API}empresas`
+  private readonly API = `${environment.API}empresas`
 
   constructor(
     private http : HttpClient

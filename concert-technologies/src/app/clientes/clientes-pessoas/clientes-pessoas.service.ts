@@ -8,7 +8,7 @@ import { delay, take } from 'rxjs/operators'
 @Injectable()
 export class ClientesPessoasService {
 
-  private API = `${environment.API}pessoas`
+  private readonly API = `${environment.API}pessoas`
 
   constructor(
     private http : HttpClient
@@ -16,6 +16,7 @@ export class ClientesPessoasService {
 
 
   carregarComId(id){
+    console.log(`${this.API}/${id}`)
     return this.http.get(`${this.API}/${id}`).pipe(take(1));
   }
 
@@ -29,8 +30,8 @@ export class ClientesPessoasService {
     return this.http.post(this.API, form).pipe(take(1));
   }
 
-  update(empresa) {
-    return this.http.put(`${this.API}/${empresa.id}`, empresa).pipe(take(1));
+  update(pessoa) {
+    return this.http.put(`${this.API}/${pessoa.id}`, pessoa).pipe(take(1));
   }
 
   deletar(id){

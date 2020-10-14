@@ -5,7 +5,7 @@ import { ClientesEmpresasComponent } from './clientes-empresas.component';
 
 const routes: Routes = [
   {path: '', component: ClientesEmpresasComponent},
-  {path: 'novo', loadChildren: () => import('./clientes-empresas-form/clientes-empresas-form.module').then(m => ClientesEmpresasFormModule)},
+  {path: 'cadastrar', loadChildren: () => import('./clientes-empresas-form/clientes-empresas-form.module').then(m => ClientesEmpresasFormModule)},
   {path: 'editar/:id', loadChildren: () => import('./clientes-empresas-form/clientes-empresas-form.module').then(m => ClientesEmpresasFormModule)}
 ];
 
