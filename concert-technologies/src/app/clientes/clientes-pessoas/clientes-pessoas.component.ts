@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
-import { ClientesDropdownService } from '../clientes-dropdown.service';
 import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 import { ClientesPessoasService } from './clientes-pessoas.service';
 import { Pessoa } from './pessoa';
@@ -28,32 +27,48 @@ export class ClientesPessoasComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private bsModalService: BsModalService,
-    private dropdownService: ClientesDropdownService
   ) { }
 
   ngOnInit(): void {
+    //Timer para a excução do Spinner Loading
     setTimeout(() => {
       this.carregado = true;
     }, 1200);
+    //Carrega as informações da lista
     this.onRefresh();
+    //Formata a data
     this.formatarData();
 
   }
 
+  /**
+   * Método que carregará a pagina com as informações do JSON-server
+   */
   onRefresh() {
     this.pessoas$ = this.clientesService.listar();
   }
 
-
+  /**
+   * Pegará as informações do formulário e encaminhará elas e o usuario para a pagina de edição de cadastro
+   * @param id 
+   */
   onEditar(id) {
     this.router.navigate(['../editar', id], { relativeTo: this.route });
   }
 
+  /**
+   * Deletará o cadastro com o ID passado por parâmetro
+   * @param id 
+   */
   onDeletar(id) {
     this.idPessoaSelecionada = id;
     this.bsModalRef = this.bsModalService.show(this.deletarModal);
   }
 
+  /**
+   * Abri um modal para confirmar a escolha do usuário
+   * Se ele quiser continuar chama o método deletar do ClientePessoaService
+   */
   confirmar() {
     this.clientesService.deletar(this.idPessoaSelecionada).subscribe(
       () => {
@@ -66,6 +81,11 @@ export class ClientesPessoasComponent implements OnInit {
 
   }
 
+  /**
+   * Mostrará a modal com a mensagem passada por parametro e com o tipo (se é success ou danger)
+   * @param tipo 
+   * @param msg 
+   */
   mostrarMsg(tipo, msg) {
     this.bsModalRef = this.bsModalService.show(AlertModalComponent);
     this.bsModalRef.content.tipo = tipo;
@@ -75,17 +95,23 @@ export class ClientesPessoasComponent implements OnInit {
     }, 2000);
   }
 
+  /**
+   * Fecha a modal
+   */
   cancelar() {
     this.bsModalRef.hide();
   }
 
+  /**
+   * Pega a data em formato aaaa-MM-dd, e a inverte
+   * transformando em dd-MM-aaaa
+   */
   formatarData() {
     this.pessoas$.subscribe(
       dados => {
         for (const pessoa of dados) {
           let dataArray = pessoa.dataNascimento.split("-");
           pessoa.dataNascimento = dataArray[2] + "/" + dataArray[1] + "/" + dataArray[0];
-          console.log(pessoa.dataNascimento);
         }
         this.pessoas = dados;
       }

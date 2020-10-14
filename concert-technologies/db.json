@@ -4,7 +4,7 @@
       "id": 1,
       "nome": "Juarez",
       "email": "juarez@email.com",
-      "dataNascimento": "2010-01-17",
+      "dataNascimento": "1988-01-17",
       "estadoCivil": "casada",
       "nacionalidade": "AL",
       "linguagemProg": {
@@ -20,7 +20,7 @@
       "id": 2,
       "nome": "Larissa",
       "email": "larissa@email.com",
-      "dataNascimento": "2000-10-02",
+      "dataNascimento": "2000-07-08",
       "estadoCivil": "solteira",
       "nacionalidade": "BR",
       "linguagemProg": {
@@ -36,7 +36,7 @@
       "id": 3,
       "nome": "Tereza",
       "email": "tereza@email.com",
-      "dataNascimento": "2000-10-02",
+      "dataNascimento": "2000-04-12",
       "estadoCivil": "viuva",
       "nacionalidade": "BR",
       "linguagemProg": {
@@ -52,7 +52,7 @@
       "id": 4,
       "nome": "Vanessa",
       "email": "vanessa@email.com",
-      "dataNascimento": "2000-10-02",
+      "dataNascimento": "1989-07-13",
       "estadoCivil": "solteira",
       "nacionalidade": "BR",
       "linguagemProg": {
@@ -60,22 +60,6 @@
         "java": null,
         "javascript": true,
         "outro": true,
-        "php": null,
-        "python": null
-      }
-    },
-    {
-      "id": 5,
-      "nome": "Arthur",
-      "email": "arthur@email.com",
-      "dataNascimento": "2020-10-02",
-      "estadoCivil": "solteira",
-      "nacionalidade": "EG",
-      "linguagemProg": {
-        "csharp": null,
-        "java": null,
-        "javascript": true,
-        "outro": null,
         "php": null,
         "python": null
       }
@@ -103,6 +87,17 @@
       "bairro": "teste2",
       "cidade": "Rio Preto",
       "estado": "MG"
+    },
+    {
+      "id": 3,
+      "nome": "empresa",
+      "cnpj": "dsadsad",
+      "telefone": "dsadadsad",
+      "cep": "dasdasdasd",
+      "rua": "dsadasdasdsad",
+      "bairro": "Centro",
+      "cidade": "São Luiz",
+      "estado": "RR"
     }
   ]
 }

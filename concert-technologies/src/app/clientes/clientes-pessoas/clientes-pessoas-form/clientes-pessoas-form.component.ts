@@ -47,12 +47,15 @@ export class ClientesPessoasFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    //Timer para a execução do Spinner Loading
     setTimeout(() => {
       this.carregado = true;
     }, 1200);
 
+    //Pega todos os paises do paises.json
     this.paises$ = this.dropdownService.getPaises();
+    
+    //Se na URL tiver o valor do ID, preencherá o formulário com as informção do cadastro que tem o ID 
     if (this.route.snapshot.params.id != null) {
       this.route.params.pipe(
         map(params => params.id),
@@ -60,6 +63,10 @@ export class ClientesPessoasFormComponent implements OnInit {
       ).subscribe(pessoa => this.atualizarForm(pessoa));
     }
   }
+  /**
+   * Atualiza os campos do formulário
+   * @param pessoa 
+   */
   atualizarForm(pessoa) {
     this.pessoa = {
       id: pessoa.id,
@@ -79,6 +86,12 @@ export class ClientesPessoasFormComponent implements OnInit {
     };
   }
 
+  /**
+   * Verifica se o formulário é valido
+   * se for, verifica se a rota tem ID, se tiver chama o método update, se não tiver chama o método de adcionar
+   * se não for válido, marcará todos os campos que ainda estão inválidos 
+   * @param form 
+   */
   onSubmit(form) {
     if (form.valid) {
       if (this.route.snapshot.params.id != null) {
@@ -106,30 +119,50 @@ export class ClientesPessoasFormComponent implements OnInit {
     campos.nacionalidade.touched = true;
   }
 
+  /**
+   * Reseta os campos do formulário
+   * @param form 
+   */
   onResetar(form) {
     form.reset();
   }
 
+  /**
+   * Retorna para a lista de pessoas
+   * @param form 
+   */
   onCancelar(form) {
-    if (this.route.snapshot.params.id != null){
-      this.router.navigate(['/clientes/pessoas']);
-    } else {
-      this.router.navigate(['/clientes/pessoas']);
-    }
+    this.router.navigate(['/clientes/pessoas']);
   }
 
+  /**
+   * Verifica se no campo há erros
+   * @param campo 
+   */
   hasError(campo) {
     return campo.errors;
   }
-
+ 
+  /**
+   * Verifica se o campo foi tocado
+   * @param campo 
+   */
   hasTouched(campo) {
     return campo.touched;
   }
 
+  /**
+   * Verifica se o campo é válido
+   * @param campo
+   */
   hasValid(campo) {
     return campo.valid;
   }
 
+  /**
+   * Aplicará o CSS de acordo com a validez dos campos
+   * @param campo 
+   */
   aplicaCss(campo) {
     if (this.hasTouched(campo) && this.hasError(campo) && !this.hasValid(campo)) {
       return 'is-invalid';
@@ -138,6 +171,11 @@ export class ClientesPessoasFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Mostrará uma modal com a mensagem e com o estilo passado pelo tipo
+   * @param tipo 
+   * @param msg 
+   */
   mostrarMsg(tipo, msg) {
     this.bsModalRef = this.bsModalService.show(AlertModalComponent);
     this.bsModalRef.content.tipo = tipo;

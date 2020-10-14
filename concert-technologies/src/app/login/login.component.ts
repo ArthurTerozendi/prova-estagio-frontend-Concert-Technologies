@@ -21,19 +21,22 @@ export class LoginComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    //Timer para a execução do Spinner Loading
     setTimeout(() => this.loading = true , 1200);
-    
+    //instancia os campos dos formulários
     this.form = this.formBuilder.group({
       login: [null],
       senha: [null]
     });
-
-    console.log(this.form);
   }
 
+  /* 
+  * Pega as informações dos campos e envia para o método fazer login do LoginService
+  */
   efetuarLogin() {
     console.log(this.form.value);
     this.loginService.fazerLogin(this.form.value);
+    //variavel que salva se há ou não, erro no login
     this.erroLogin = !this.loginService.conferirEstadoLogin();
   }
 

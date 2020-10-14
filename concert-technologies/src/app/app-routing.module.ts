@@ -6,9 +6,9 @@ import { HomeModule } from './home/home.module';
 import { LoginModule } from './login/login.module';
 
 const routes: Routes = [
-  {path: 'clientes', loadChildren: () => import('src/app/clientes/clientes.module').then(m => ClientesModule)},
+  {path: 'clientes', loadChildren: () => import('src/app/clientes/clientes.module').then(m => ClientesModule),canActivate: [AutenticadorGuard]},
   {path: 'login', loadChildren: () => import('src/app/login/login.module').then(m => LoginModule)},
-  {path: 'home', loadChildren: () => import('src/app/home/home.module').then(m => HomeModule)}, //canActivate: [AutenticadorGuard]},
+  {path: 'home', loadChildren: () => import('src/app/home/home.module').then(m => HomeModule), canActivate: [AutenticadorGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 
 ];

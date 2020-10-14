@@ -12,13 +12,9 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //Timer para a execução do Spinner Loading
     setTimeout(() => {
       this.carregado = true;
     }, 1200);
   }
-
-  clicou() {
-    console.log('clicou');
-  }
-
 }

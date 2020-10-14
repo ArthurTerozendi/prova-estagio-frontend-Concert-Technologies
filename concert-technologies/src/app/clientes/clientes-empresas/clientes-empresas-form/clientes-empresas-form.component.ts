@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { Estados } from '../../estados';
+import { Estados } from '../estados';
 import { ClientesDropdownService } from '../../clientes-dropdown.service';
-import { Cidades } from '../../cidades';
+import { Cidades } from '../cidades';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { ClientesEmpresasService } from '../clientes-empresas.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -36,10 +36,12 @@ export class ClientesEmpresasFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //Timer para a execução do Spinner Loading
     setTimeout(() => {
       this.carregado = true;
     }, 1200);
 
+    //Instancia o formulário
     this.form = this.formBuilder.group({
       id: [null],
       nome: [null, Validators.required],
@@ -53,12 +55,13 @@ export class ClientesEmpresasFormComponent implements OnInit {
     });
 
 
-
+    //Pega todos os estados e preenche o campo do select
     this.clietesDropdown.getEstados()
       .subscribe(dados => {
         this.estados = dados;
       });
 
+    //Se na URL tiver o valor do ID, preencherá o formulário com as informção do cadastro que tem o ID
     if (this.route.snapshot.params.id != null) {
       this.route.params.pipe(
         map(params => params.id),
@@ -66,6 +69,7 @@ export class ClientesEmpresasFormComponent implements OnInit {
       ).subscribe(empresa => this.atualizarForm(empresa));
     }
 
+    //Pega o estado selecionado e preenche o select das cidades com todas as cidades daquele estado
     this.form.get('estado').valueChanges
       .pipe(
         tap(estado => console.log),
@@ -75,7 +79,11 @@ export class ClientesEmpresasFormComponent implements OnInit {
       )
       .subscribe(cidades => this.cidades = cidades);
   }
-
+  
+  /**
+   * Atualiza os campos do formulário
+   * @param pessoa 
+   */
   atualizarForm(empresa) {
     this.form.patchValue({
       id: empresa.id,
@@ -92,6 +100,12 @@ export class ClientesEmpresasFormComponent implements OnInit {
     console.log(this.form.value);
   }
 
+  /**
+   * Verifica se o formulário é valido
+   * se for, verifica se a rota tem ID, se tiver chama o método update, se não tiver chama o método de adcionar
+   * se não for válido, marcará todos os campos que ainda estão inválidos 
+   * @param form 
+   */
   onSubmit() {
 
     if (this.form.valid) {
@@ -119,10 +133,18 @@ export class ClientesEmpresasFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Reseta os campos do formulário
+   * @param form 
+   */
   onResetar() {
     this.form.reset();
   }
 
+  /**
+   * Retorna para a lista de empresas
+   * @param form 
+   */
   onCancelar() {
     if (!this.form.value.id) {
       this.router.navigate(['/clientes/empresas']);
@@ -131,18 +153,34 @@ export class ClientesEmpresasFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Verifica se no campo há erros
+   * @param campo 
+   */
   hasError(campo: string) {
     return this.form.get(campo).errors;
   }
 
+  /**
+   * Verifica se o campo foi tocado
+   * @param campo 
+   */
   hasTouched(campo: string) {
     return this.form.get(campo).touched;
   }
 
+  /**
+   * Verifica se o campo é válido
+   * @param campo
+   */
   hasValid(campo: string) {
     return this.form.get(campo).valid;
   }
 
+  /**
+   * Aplicará o CSS de acordo com a validez dos campos
+   * @param campo 
+   */
   aplicaCss(campo) {
     if (this.hasTouched(campo) && this.hasError(campo)) {
       return 'is-invalid';
@@ -151,6 +189,11 @@ export class ClientesEmpresasFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Mostrará uma modal com a mensagem e com o estilo passado pelo tipo
+   * @param tipo 
+   * @param msg 
+   */
   mostrarMsg(tipo, msg) {
     this.bsModalRef = this.bsModalService.show(AlertModalComponent);
     this.bsModalRef.content.tipo = tipo;

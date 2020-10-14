@@ -1,6 +1,14 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark" *ngIf="carregado; else carregando" >
     <a class="navbar-brand"[routerLink]="['/']" > Home </a>
 </nav>
 <div>
     <router-outlet> </router-outlet>
 </div>
+
+<ng-template #carregando>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border m-5" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</ng-template>

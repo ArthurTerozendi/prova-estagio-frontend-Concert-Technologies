@@ -30,27 +30,44 @@ export class ClientesEmpresasComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    //Timer para a excução do Spinner Loading
     setTimeout(() => {
       this.carregado = true;
     }, 1000);
-
+    //Timer para a excução do Spinner Loading
+    //Carrega as informações da lista
     this.onRefresh();
 
   }
 
+  /**
+   * Método que carregará a pagina com as informações do JSON-server
+   */
   onRefresh() {
     this.empresas$ = this.clientesService.listar();
   }
 
+  /**
+   * Pegará as informações do formulário e encaminhará elas e o usuario para a pagina de edição de cadastro
+   * @param id 
+   */
   onEditar(id) {
     this.router.navigate(['../editar', id], { relativeTo: this.route });
   }
 
+  /**
+   * Deletará o cadastro com o ID passado por parâmetro
+   * @param id 
+   */
   onDeletar(id) {
     this.idEmpresaSelecionada = id;
     this.bsModalRef = this.bsModalService.show(this.deletarModal, { class: 'modal-sm' });
   }
 
+  /**
+   * Abri um modal para confirmar a escolha do usuário
+   * Se ele quiser continuar chama o método deletar do ClientePessoaService
+   */
   confirmar() {
     this.clientesService.deletar(this.idEmpresaSelecionada).subscribe(
       () => {
@@ -62,11 +79,17 @@ export class ClientesEmpresasComponent implements OnInit {
     this.bsModalRef.hide();
     
   }
-
+  /**
+   * Fecha a modal
+   */
   cancelar() {
     this.bsModalService.hide();
   }
-
+  /**
+   * Mostrará a modal com a mensagem passada por parametro e com o tipo (se é success ou danger)
+   * @param tipo 
+   * @param msg 
+   */
   mostrarMsg(tipo, msg) {
     this.bsModalRef = this.bsModalService.show(AlertModalComponent);
     this.bsModalRef.content.tipo = tipo;
