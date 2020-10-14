@@ -26,4 +26,10 @@ export class ClientesDropdownService {
   getPaises() {
     return this.http.get<Paises[]>('/assets/dados/paises.json');
   }
+
+  getPaisesNome(sigla) {
+    return this.http.get('/assets/dados/paises.json').pipe(
+      map((pais : Paises[]) => pais.filter(p => p.sigla == sigla))
+    );
+  }
 }

@@ -1,10 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Observable } from 'rxjs';
+import { Observable, pairs } from 'rxjs';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { ClientesDropdownService } from '../clientes-dropdown.service';
 import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 import { ClientesPessoasService } from './clientes-pessoas.service';
+import { Paises } from './paises';
 import { Pessoa } from './pessoa';
 
 @Component({
@@ -13,20 +16,21 @@ import { Pessoa } from './pessoa';
   styleUrls: ['./clientes-pessoas.component.sass'],
   preserveWhitespaces: true
 })
-export class ClientesPessoasComponent implements OnInit {
+export class ClientesPessoasComponent implements OnInit, OnDestroy {
 
   carregado: boolean = false;
+  pessoas: Pessoa[];
   pessoas$: Observable<Pessoa[]>;
   bsModalRef: BsModalRef;
   idPessoaSelecionada;
   @ViewChild('deletarModal') deletarModal;
-  @ViewChild('sucessoModal') sucessoModal;
 
   constructor(
     private clientesService: ClientesPessoasService,
     private router: Router,
     private route: ActivatedRoute,
-    private bsModalService: BsModalService
+    private bsModalService: BsModalService,
+    private dropdownService: ClientesDropdownService
   ) { }
 
   ngOnInit(): void {
@@ -34,13 +38,14 @@ export class ClientesPessoasComponent implements OnInit {
       this.carregado = true;
     }, 1200);
     this.onRefresh();
+    this.formatarData();
 
   }
 
   onRefresh() {
     this.pessoas$ = this.clientesService.listar();
   }
-  
+
 
   onEditar(id) {
     this.router.navigate(['../editar', id], { relativeTo: this.route });
@@ -60,7 +65,7 @@ export class ClientesPessoasComponent implements OnInit {
       error => this.mostrarMsg('error', 'Não foi possível remover a pessoa, tente novamente')
     );
     this.bsModalRef.hide();
-    
+
   }
 
   mostrarMsg(tipo, msg) {
@@ -71,8 +76,21 @@ export class ClientesPessoasComponent implements OnInit {
       this.bsModalService.hide();
     }, 2000);
   }
-  
+
   cancelar() {
     this.bsModalRef.hide();
+  }
+
+  formatarData() {
+    this.pessoas$.subscribe(
+      dados => {
+        for (const pessoa of dados) {
+          let dataArray = pessoa.dataNascimento.split("-");
+          pessoa.dataNascimento = dataArray[2] + "/" + dataArray[1] + "/" + dataArray[0];
+          console.log(pessoa.dataNascimento);
+        }
+        this.pessoas = dados;
+      }
+    )
   }
 }

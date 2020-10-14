@@ -11,18 +11,26 @@
             </div>
         </div>
         <div class="card-body" style="overflow-y: scroll; height: 500px;">
-            <table class="table table-hover" *ngIf="pessoas$  | async as pessoas; else loading">
+            <table class="table table-hover table-striped" *ngIf="pessoas; else loading">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Nome</th>
-                        <th></th>
+                        <th>E-mail</th>
+                        <th>Data de Nascimento</th>
+                        <th>Estado Civil</th>
+                        <th>Nacionalidade</th>
+                        <th>  </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let pessoa of pessoas">
                         <td> {{ pessoa.id }} </td>
                         <td> {{ pessoa.nome }} </td>
+                        <td> {{ pessoa.email }} </td>
+                        <td> {{ pessoa.dataNascimento }} </td>
+                        <td> {{ pessoa.estadoCivil }} </td>
+                        <td> {{ pessoa.nacionalidade }} </td>
                         <td>
                             <span class="float-right">
                                 <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEditar(pessoa.id)">
