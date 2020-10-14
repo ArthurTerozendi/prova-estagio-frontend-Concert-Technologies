@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
 
-import { environment } from 'src/environments/environment';
 import { Empresas } from './empresas';
 import { delay, take } from 'rxjs/operators'
 
 @Injectable()
 export class ClientesEmpresasService {
 
-  private readonly API = `${environment.API}empresas`
+  private readonly API = "http://localhost:3000/empresas"
 
   constructor(
     private http : HttpClient

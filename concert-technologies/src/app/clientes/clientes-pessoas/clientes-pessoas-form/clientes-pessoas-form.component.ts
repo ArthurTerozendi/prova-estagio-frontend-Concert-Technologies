@@ -14,10 +14,10 @@ import { Pessoa } from '../pessoa';
 })
 export class ClientesPessoasFormComponent implements OnInit {
 
-  carregado : boolean = false;
-  paises$ : Observable<Paises[]>;
-  linguagemProg : string = "";
-  pessoa : Pessoa = {
+  carregado: boolean = false;
+  paises$: Observable<Paises[]>;
+  linguagemProg: string = "";
+  pessoa: Pessoa = {
     id: null,
     nome: null,
     email: null,
@@ -31,14 +31,14 @@ export class ClientesPessoasFormComponent implements OnInit {
       outro: null,
       php: null,
       python: null,
-  }
-};
+    }
+  };
 
   constructor(
-    private dropdownService : ClientesDropdownService,
-    private clientesService : ClientesPessoasService,
-    private route : ActivatedRoute,
-    private router : Router
+    private dropdownService: ClientesDropdownService,
+    private clientesService: ClientesPessoasService,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,12 +48,13 @@ export class ClientesPessoasFormComponent implements OnInit {
     }, 1200);
 
     this.paises$ = this.dropdownService.getPaises();
-
-    this.route.params.pipe(
-      map(params => params.id),
-      switchMap(id => this.clientesService.carregarComId(id))
-    ).subscribe(pessoa =>this.atualizarForm(pessoa));
-  } 
+    if (this.route.snapshot.params.id != null) {
+      this.route.params.pipe(
+        map(params => params.id),
+        switchMap(id => this.clientesService.carregarComId(id))
+      ).subscribe(pessoa => this.atualizarForm(pessoa));
+    }
+  }
   atualizarForm(pessoa) {
     this.pessoa = {
       id: pessoa.id,
@@ -74,9 +75,8 @@ export class ClientesPessoasFormComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(this.route.snapshot.params.id != null);
-    if(form.valid){
-      if(this.route.snapshot.params.id != null){
+    if (form.valid) {
+      if (this.route.snapshot.params.id != null) {
         this.clientesService.update(this.pessoa).subscribe(
           sucesso => {
             console.log('sucesso');
@@ -87,29 +87,20 @@ export class ClientesPessoasFormComponent implements OnInit {
         )
       } else {
         this.clientesService.adcionar(this.pessoa).subscribe(
-              sucesso => {
-                this.router.navigate(['/clientes/pessoas']);
-              }
-            );
+          sucesso => {
+            this.router.navigate(['/clientes/pessoas']);
+          }
+        );
       }
     }
-    // console.log(this.pessoa);
-    // console.log(form.value);
-    // if (!form.value.id) {
-    //   this.clientesService.adcionar(this.pessoa).subscribe(
-    //     sucesso => {
-    //       this.router.navigate(['/clientes/pessoas']);
-    //     }
-    //   );
-    // }
-    // else {
-      //this.clientesService.update(form.value).subscribe(
-        //sucesso => {
-          //console.log('sucesso');
-          //this.router.navigate(['/clientes/empresas']);
-        //},
-      //)
-    // }
+  }
+
+  onCancelar(form) {
+    if (this.route.snapshot.params.id != null){
+      this.router.navigate(['/clientes/pessoas']);
+    } else {
+      form.reset();
+    }
   }
 
   hasError(campo) {

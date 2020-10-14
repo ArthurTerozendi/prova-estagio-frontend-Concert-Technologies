@@ -17,7 +17,7 @@ import { ClientesEmpresasService } from '../clientes-empresas.service';
 export class ClientesEmpresasFormComponent implements OnInit {
   carregado: boolean = false;
   form: FormGroup;
-  cidades: Cidades;
+  cidades: Cidades[];
   estados: Estados[];
   estados$: Observable<Estados[]>;
   cidades$: Observable<Cidades[]>;
@@ -55,24 +55,24 @@ export class ClientesEmpresasFormComponent implements OnInit {
         this.estados = dados;
       });
 
+    if (this.route.snapshot.params.id != null) {
+      this.route.params.pipe(
+        map(params => params.id),
+        switchMap(id => this.clienteServices.carregarComId(id))
+      ).subscribe(empresa => this.atualizarForm(empresa));
+    }
+
     this.form.get('estado').valueChanges
       .pipe(
         tap(estado => console.log),
         map(estado => this.estados.filter(e => e.sigla === estado)),
         map(estados => estados && estados.length > 0 ? estados[0].id : null),
-        switchMap((estadoId: number) => this.clietesDropdown.getCidades(estadoId)),
-        tap(console.log)
+        switchMap((estadoId: number) => this.clietesDropdown.getCidades(estadoId))
       )
       .subscribe(cidades => this.cidades = cidades);
-
-    this.route.params.pipe(
-      map(params => params.id),
-      switchMap(id => this.clienteServices.carregarComId(id))
-    ).subscribe(empresa => this.atualizarForm(empresa));
   }
 
   atualizarForm(empresa) {
-    console.log(empresa);
     this.form.patchValue({
       id: empresa.id,
       nome: empresa.nome,
@@ -81,9 +81,11 @@ export class ClientesEmpresasFormComponent implements OnInit {
       cep: empresa.cep,
       rua: empresa.rua,
       bairro: empresa.bairro,
-      cidade: empresa.cidade,
       estado: empresa.estado,
+      cidade: empresa.cidade,
     });
+
+    console.log(this.form.value);
   }
 
   onSubmit() {
@@ -105,14 +107,15 @@ export class ClientesEmpresasFormComponent implements OnInit {
         )
       }
     } else {
-      const controle = this.form;
-      controle.markAllAsTouched();
+
+      this.form.markAllAsTouched();
     }
   }
 
   onCancelar() {
-    if(!this.form.value.id){
+    if (!this.form.value.id) {
       this.form.reset();
+      this.router.navigate(['/clientes/empresas']);
     } else {
       this.router.navigate(['/clientes/empresas']);
     }

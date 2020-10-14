@@ -91,7 +91,7 @@
                 </div>
                 <label for="nacionalidade"> Nacionalidade </label>
                 <div class="form-row">
-                    <select class="custom-select" id="nacionalidade" name="nacionalidade" [ngModel]="pessoa.nacionalidade" #nacionalidade="ngModel" [ngClass]="aplicaCss(nacionalidade)" required>
+                    <select class="custom-select" id="nacionalidade" name="nacionalidade" [(ngModel)]="pessoa.nacionalidade" #nacionalidade="ngModel" [ngClass]="aplicaCss(nacionalidade)" required>
                         <option *ngFor="let paises of paises$ | async" [value]="paises.sigla"> {{ paises.nome_pais }} </option>
                     </select>
                     <div class="invalid-feedback">
@@ -104,7 +104,7 @@
             </div>
         </div>
         <button class="btn btn-primary" type="submit"> Submit </button>
-        <button class="btn btn-cancel"> Cancelar </button>
+        <button class="btn btn-cancel" (click)="onCancelar(form)"> Cancelar </button>
     </form>
 </div>
 

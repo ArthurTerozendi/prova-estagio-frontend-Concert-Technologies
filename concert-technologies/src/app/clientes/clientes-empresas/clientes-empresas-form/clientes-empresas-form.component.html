@@ -64,18 +64,6 @@
             </div>
 
             <div class="col-md-4 mb-3">
-                <label for="cidade">Cidade</label>
-                <select class="custom-select" id="cidade" formControlName="cidade" [ngClass]="aplicaCss('cidade')">
-                    <option *ngFor="let cidades of cidades " [value]="cidades.nome"> {{ cidades.nome }} </option>
-                </select>
-                <div class="invalid-feedback">
-                    Por favor insira a cidade!
-                </div>
-                <div class="valid-feedback">
-                    Cidade valido!
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
                 <label for="estado">Estado</label>
                 <select class="custom-select" id="estado" formControlName="estado"[ngClass]="aplicaCss('estado')">
                     <option *ngFor="let estados of estados"  [value]="estados.sigla"> {{ estados.nome }} </option>
@@ -85,6 +73,18 @@
                 </div>
                 <div class="valid-feedback">
                     Estado valido!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3"> 
+                <label for="cidade">Cidade</label>
+                <select class="custom-select" id="cidade" formControlName="cidade" [ngClass]="aplicaCss('cidade')">
+                    <option *ngFor="let cidades of cidades " [value]="cidades.nome"> {{ cidades.nome }} </option>
+                </select>
+                <div class="invalid-feedback">
+                    Por favor insira a cidade!
+                </div>
+                <div class="valid-feedback">
+                    Cidade valido!
                 </div>
             </div>
         </div>

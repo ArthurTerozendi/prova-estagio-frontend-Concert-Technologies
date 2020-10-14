@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable} from '@angular/core';
 
-import { environment } from 'src/environments/environment';
 import { Pessoa } from './pessoa';
 import { delay, take } from 'rxjs/operators'
 
 @Injectable()
 export class ClientesPessoasService {
 
-  private readonly API = `${environment.API}pessoas`
+  private readonly API = "http://localhost:3000/pessoas";
 
   constructor(
     private http : HttpClient
@@ -27,6 +26,7 @@ export class ClientesPessoasService {
   }
 
   adcionar(form) {
+    console.log(this.API)
     return this.http.post(this.API, form).pipe(take(1));
   }
 
