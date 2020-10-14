@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
+import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 import { ClientesPessoasService } from './clientes-pessoas.service';
 import { Pessoa } from './pessoa';
 
@@ -16,8 +17,7 @@ export class ClientesPessoasComponent implements OnInit {
 
   carregado: boolean = false;
   pessoas$: Observable<Pessoa[]>;
-  modalDeletarRef: BsModalRef;
-  modalSucessoRef: BsModalRef;
+  bsModalRef: BsModalRef;
   idPessoaSelecionada;
   @ViewChild('deletarModal') deletarModal;
   @ViewChild('sucessoModal') sucessoModal;
@@ -26,7 +26,7 @@ export class ClientesPessoasComponent implements OnInit {
     private clientesService: ClientesPessoasService,
     private router: Router,
     private route: ActivatedRoute,
-    private modalService: BsModalService
+    private bsModalService: BsModalService
   ) { }
 
   ngOnInit(): void {
@@ -48,26 +48,31 @@ export class ClientesPessoasComponent implements OnInit {
 
   onDeletar(id) {
     this.idPessoaSelecionada = id;
-    this.modalDeletarRef = this.modalService.show(this.deletarModal, { class: 'modal-sm' });
+    this.bsModalRef = this.bsModalService.show(this.deletarModal);
   }
 
   confirmar() {
     this.clientesService.deletar(this.idPessoaSelecionada).subscribe(
       () => {
+        this.mostrarMsg('success', 'Pessoa removida com sucesso');
         this.onRefresh();
-        this.modalSucessoRef = this.modalService.show(this.sucessoModal, { class: 'modal-sm' });
       },
-      error => console.error(error)
+      error => this.mostrarMsg('error', 'Não foi possível remover a pessoa, tente novamente')
     );
-    this.modalDeletarRef.hide();
+    this.bsModalRef.hide();
     
   }
 
-  fechar() {
-    this.modalSucessoRef.hide();
+  mostrarMsg(tipo, msg) {
+    this.bsModalRef = this.bsModalService.show(AlertModalComponent);
+    this.bsModalRef.content.tipo = tipo;
+    this.bsModalRef.content.mensagem = msg;
+    setTimeout(() => {
+      this.bsModalService.hide();
+    }, 2000);
   }
-
+  
   cancelar() {
-    this.modalDeletarRef.hide();
+    this.bsModalRef.hide();
   }
 }

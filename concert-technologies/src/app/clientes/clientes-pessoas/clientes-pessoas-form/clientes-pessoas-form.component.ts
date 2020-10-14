@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { ClientesDropdownService } from '../../clientes-dropdown.service';
+import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
 import { ClientesPessoasService } from '../clientes-pessoas.service';
 import { Paises } from '../paises';
 import { Pessoa } from '../pessoa';
@@ -17,6 +19,8 @@ export class ClientesPessoasFormComponent implements OnInit {
   carregado: boolean = false;
   paises$: Observable<Paises[]>;
   linguagemProg: string = "";
+  bsModalRef: BsModalRef;
+
   pessoa: Pessoa = {
     id: null,
     nome: null,
@@ -38,7 +42,8 @@ export class ClientesPessoasFormComponent implements OnInit {
     private dropdownService: ClientesDropdownService,
     private clientesService: ClientesPessoasService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private bsModalService : BsModalService
   ) { }
 
   ngOnInit(): void {
@@ -78,28 +83,38 @@ export class ClientesPessoasFormComponent implements OnInit {
     if (form.valid) {
       if (this.route.snapshot.params.id != null) {
         this.clientesService.update(this.pessoa).subscribe(
-          sucesso => {
-            console.log('sucesso');
+          success => {
+              this.mostrarMsg('success', "Cadastro editado com sucesso!");
             this.router.navigate(['/clientes/pessoas']);
           },
-          error => console.error(error),
-          () => console.log("upadate")
+          error => this.mostrarMsg('danger', "Não foi possível editar o cadastro dessa pessoa, tente novamente!")
         )
       } else {
         this.clientesService.adcionar(this.pessoa).subscribe(
           sucesso => {
+            this.mostrarMsg('success', "Pessoa cadastrada com sucesso!");
             this.router.navigate(['/clientes/pessoas']);
-          }
+          },
+          error => this.mostrarMsg('danger', "Não foi possível cadastrar essa pessoa, tente novamente!")
         );
       }
     }
+    let campos = form.form.controls;
+    campos.dataNascimento.touched = true;
+    campos.nome.touched = true;
+    campos.email.touched = true;
+    campos.nacionalidade.touched = true;
+  }
+
+  onResetar(form) {
+    form.reset();
   }
 
   onCancelar(form) {
     if (this.route.snapshot.params.id != null){
       this.router.navigate(['/clientes/pessoas']);
     } else {
-      form.reset();
+      this.router.navigate(['/clientes/pessoas']);
     }
   }
 
@@ -122,4 +137,14 @@ export class ClientesPessoasFormComponent implements OnInit {
       return 'is-valid';
     }
   }
+
+  mostrarMsg(tipo, msg) {
+    this.bsModalRef = this.bsModalService.show(AlertModalComponent);
+    this.bsModalRef.content.tipo = tipo;
+    this.bsModalRef.content.mensagem = msg;
+    setTimeout(() => {
+      this.bsModalService.hide();
+    }, 2000);
+  }
+
 }

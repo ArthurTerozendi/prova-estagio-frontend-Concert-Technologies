@@ -6,6 +6,7 @@ import { ClientesRoutingModule } from './clientes-routing.module';
 import { ClientesComponent } from './clientes.component';
 import { ClientesDropdownService } from './clientes-dropdown.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     CommonModule,
     ClientesRoutingModule,
     HttpClientModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    SharedModule
   ],
   providers: [
     ClientesDropdownService

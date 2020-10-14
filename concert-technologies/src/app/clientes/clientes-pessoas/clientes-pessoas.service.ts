@@ -15,7 +15,6 @@ export class ClientesPessoasService {
 
 
   carregarComId(id){
-    console.log(`${this.API}/${id}`)
     return this.http.get(`${this.API}/${id}`).pipe(take(1));
   }
 
@@ -26,7 +25,6 @@ export class ClientesPessoasService {
   }
 
   adcionar(form) {
-    console.log(this.API)
     return this.http.post(this.API, form).pipe(take(1));
   }
 

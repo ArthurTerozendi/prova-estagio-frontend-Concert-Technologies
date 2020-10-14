@@ -8,6 +8,8 @@ import { ClientesDropdownService } from '../../clientes-dropdown.service';
 import { Cidades } from '../../cidades';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { ClientesEmpresasService } from '../clientes-empresas.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-clientes-empresas-form',
@@ -22,13 +24,15 @@ export class ClientesEmpresasFormComponent implements OnInit {
   estados$: Observable<Estados[]>;
   cidades$: Observable<Cidades[]>;
   atualizado: boolean;
+  bsModalRef: BsModalRef
 
   constructor(
     private formBuilder: FormBuilder,
     private clietesDropdown: ClientesDropdownService,
     private clienteServices: ClientesEmpresasService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private bsModalService : BsModalService
   ) { }
 
   ngOnInit(): void {
@@ -94,16 +98,19 @@ export class ClientesEmpresasFormComponent implements OnInit {
       if (!this.form.value.id) {
         this.clienteServices.adcionar(this.form.value).subscribe(
           sucesso => {
+            this.mostrarMsg('success', 'Empresa cadastrada com sucesso!')
             this.router.navigate(['/clientes/empresas']);
-          }
+          },
+          error => this.mostrarMsg('danger', 'Não foi possível cadastrar essa empresa, tente novamente!')
         );
       }
       else {
         this.clienteServices.update(this.form.value).subscribe(
-          sucesso => {
-            console.log('sucesso');
+          success => {
+            this.mostrarMsg('success', 'Cadastro editado com sucesso!')
             this.router.navigate(['/clientes/empresas']);
           },
+          error => this.mostrarMsg('danger', 'Não foi possível editar o cadastro dessa empresa, tente novamente!')
         )
       }
     } else {
@@ -139,6 +146,15 @@ export class ClientesEmpresasFormComponent implements OnInit {
     } else if (this.hasValid(campo) && !this.hasError(campo)) {
       return 'is-valid';
     }
+  }
+
+  mostrarMsg(tipo, msg) {
+    this.bsModalRef = this.bsModalService.show(AlertModalComponent);
+    this.bsModalRef.content.tipo = tipo;
+    this.bsModalRef.content.mensagem = msg;
+    setTimeout(() => {
+      this.bsModalService.hide();
+    }, 2000);
   }
 
 }
