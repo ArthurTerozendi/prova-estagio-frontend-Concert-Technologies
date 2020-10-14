@@ -79,22 +79,6 @@
         "php": null,
         "python": null
       }
-    },
-    {
-      "id": 6,
-      "nome": "Olanda",
-      "email": "olanda@email.com",
-      "dataNascimento": "2020-10-29",
-      "estadoCivil": "divorciada",
-      "nacionalidade": "RU",
-      "linguagemProg": {
-        "csharp": true,
-        "java": true,
-        "javascript": null,
-        "outro": null,
-        "php": true,
-        "python": null
-      }
     }
   ],
   "empresas": [
