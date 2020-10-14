@@ -6,6 +6,8 @@
             </div>
             <div class="float-right">
                 <button class="btn btn-primary" [routerLink]="['cadastrar']">Nova Empresa</button>
+
+                <button class="btn btn-secondary" (click)="onRefresh()">Atualizar</button>
             </div>
         </div>
         <div class="card-body" style="overflow-y: scroll; height: 500px;">
@@ -14,6 +16,13 @@
                     <tr>
                         <th>#</th>
                         <th>Empresas</th>
+                        <th>CNPJ</th>
+                        <th>Telefone</th>
+                        <th>CEP</th>
+                        <th>Rua</th>
+                        <th>Bairro</th>
+                        <th>Estado</th>
+                        <th>Cidade</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -21,6 +30,14 @@
                     <tr *ngFor="let empresa of empresas">
                         <td> {{ empresa.id }} </td>
                         <td> {{ empresa.nome }} </td>
+                        <td> {{empresa.cnpj}} </td>
+                        <td> {{empresa.telefone}} </td>
+                        <td> {{empresa.cep}} </td>
+                        <td> {{empresa.rua}} </td>
+                        <td> {{empresa.bairro}} </td>
+                        <td> {{empresa.estado}} </td>
+                        <td> {{empresa.cidade}} </td>
+                        
                         <td>
                             <span class="float-right">
                                 <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEditar(empresa.id)">

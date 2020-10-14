@@ -1,7 +1,7 @@
 export interface Empresas {
     id: number;
     nome: string;
-    CNPJ : string;
+    cnpj : string;
     telefone: string;
     cep: string;
     rua: string;

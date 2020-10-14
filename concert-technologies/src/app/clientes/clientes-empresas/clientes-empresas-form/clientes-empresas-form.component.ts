@@ -119,9 +119,12 @@ export class ClientesEmpresasFormComponent implements OnInit {
     }
   }
 
+  onResetar() {
+    this.form.reset();
+  }
+
   onCancelar() {
     if (!this.form.value.id) {
-      this.form.reset();
       this.router.navigate(['/clientes/empresas']);
     } else {
       this.router.navigate(['/clientes/empresas']);

@@ -67,7 +67,7 @@
     {
       "id": 5,
       "nome": "Arthur",
-      "email": "arthurterozendi@gmail.com",
+      "email": "arthur@email.com",
       "dataNascimento": "2020-10-02",
       "estadoCivil": "solteira",
       "nacionalidade": "EG",
@@ -81,7 +81,7 @@
       }
     },
     {
-      "id": 8,
+      "id": 6,
       "nome": "Olanda",
       "email": "olanda@email.com",
       "dataNascimento": "2020-10-29",
@@ -93,22 +93,6 @@
         "javascript": null,
         "outro": null,
         "php": true,
-        "python": null
-      }
-    },
-    {
-      "id": 9,
-      "nome": "Umberto",
-      "email": "umberto@email.com",
-      "dataNascimento": "2020-10-28",
-      "estadoCivil": "divorciada",
-      "nacionalidade": "NZ",
-      "linguagemProg": {
-        "csharp": true,
-        "java": null,
-        "javascript": null,
-        "outro": null,
-        "php": null,
         "python": null
       }
     }
@@ -135,28 +119,6 @@
       "bairro": "teste2",
       "cidade": "Rio Preto",
       "estado": "MG"
-    },
-    {
-      "id": 3,
-      "nome": "teste3",
-      "cnpj": "dsadadssad",
-      "telefone": "3333-4444",
-      "cep": "33333-444",
-      "rua": "teste3",
-      "bairro": "teste3",
-      "cidade": "Ritápolis",
-      "estado": "MG"
-    },
-    {
-      "id": 4,
-      "nome": "Arthur",
-      "cnpj": "dsadadssad",
-      "telefone": "213123",
-      "cep": "01001-000",
-      "rua": "Praça da Sé",
-      "bairro": "d",
-      "cidade": "Amparo",
-      "estado": "SP"
     }
   ]
 }

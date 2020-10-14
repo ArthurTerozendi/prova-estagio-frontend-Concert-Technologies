@@ -1,13 +1,11 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Observable, pairs } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { ClientesDropdownService } from '../clientes-dropdown.service';
 import { AlertModalComponent } from '../shared/alert-modal/alert-modal.component';
 import { ClientesPessoasService } from './clientes-pessoas.service';
-import { Paises } from './paises';
 import { Pessoa } from './pessoa';
 
 @Component({
@@ -16,7 +14,7 @@ import { Pessoa } from './pessoa';
   styleUrls: ['./clientes-pessoas.component.sass'],
   preserveWhitespaces: true
 })
-export class ClientesPessoasComponent implements OnInit, OnDestroy {
+export class ClientesPessoasComponent implements OnInit {
 
   carregado: boolean = false;
   pessoas: Pessoa[];
