@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   * Pega as informações dos campos e envia para o método fazer login do LoginService
   */
   efetuarLogin() {
-    console.log(this.form.value);
     this.loginService.fazerLogin(this.form.value);
     //variavel que salva se há ou não, erro no login
     this.erroLogin = !this.loginService.conferirEstadoLogin();

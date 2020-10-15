@@ -60,7 +60,7 @@
         "java": null,
         "javascript": true,
         "outro": true,
-        "php": null,
+        "php": true,
         "python": null
       }
     }
@@ -68,36 +68,47 @@
   "empresas": [
     {
       "id": 1,
-      "nome": "teste",
-      "cnpj": "dsadasdads",
-      "telefone": "1111-2222",
+      "nome": "Empresa Exemplo C&A",
+      "cnpj": "51.912.310/0001-13",
+      "telefone": "(31) 99999-9999",
       "cep": "11111-222",
-      "rua": "teste",
-      "bairro": "teste",
-      "cidade": "Romaria",
+      "rua": "Rua Abreu Guimarães",
+      "bairro": "Centro",
+      "cidade": "Sabará",
       "estado": "MG"
     },
     {
       "id": 2,
-      "nome": "teste2",
-      "cnpj": "dsadasdads",
-      "telefone": "2222-3333",
+      "nome": "Empresa Exemplo Generica",
+      "cnpj": "02.746.601/0001-73",
+      "telefone": "(31) 92222-3333",
       "cep": "22222-333",
-      "rua": "teste2",
-      "bairro": "teste2",
+      "rua": "Rua Turmalina",
+      "bairro": "Centro",
       "cidade": "Rio Preto",
       "estado": "MG"
     },
     {
       "id": 3,
-      "nome": "empresa",
-      "cnpj": "dsadsad",
-      "telefone": "dsadadsad",
-      "cep": "dasdasdasd",
-      "rua": "dsadasdasdsad",
+      "nome": "Empresa C.A.",
+      "cnpj": "23.567.503/0001-49",
+      "telefone": "(31) 98722-4314",
+      "cep": "45445-145",
+      "rua": "Rua Principal",
       "bairro": "Centro",
       "cidade": "São Luiz",
       "estado": "RR"
+    },
+    {
+      "id": 4,
+      "nome": "Empresa Genérica de Energia",
+      "cnpj": "27.330.782/0001-83",
+      "telefone": "(31) 98788-6587",
+      "cep": "01001-000",
+      "rua": "Praça da Sé",
+      "bairro": "Centro",
+      "cidade": "São Paulo",
+      "estado": "SP"
     }
   ]
 }

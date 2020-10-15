@@ -3,13 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { Estados } from '../estados';
 import { ClientesDropdownService } from '../../clientes-dropdown.service';
 import { Cidades } from '../cidades';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { ClientesEmpresasService } from '../clientes-empresas.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AlertModalComponent } from '../../shared/alert-modal/alert-modal.component';
+import { Estados } from '../estados';
 
 @Component({
   selector: 'app-clientes-empresas-form',
@@ -96,8 +96,6 @@ export class ClientesEmpresasFormComponent implements OnInit {
       estado: empresa.estado,
       cidade: empresa.cidade,
     });
-
-    console.log(this.form.value);
   }
 
   /**
