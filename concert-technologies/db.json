@@ -47,22 +47,6 @@
         "php": null,
         "python": null
       }
-    },
-    {
-      "id": 4,
-      "nome": "Vanessa",
-      "email": "vanessa@email.com",
-      "dataNascimento": "1989-07-13",
-      "estadoCivil": "solteira",
-      "nacionalidade": "BR",
-      "linguagemProg": {
-        "csharp": null,
-        "java": null,
-        "javascript": true,
-        "outro": true,
-        "php": true,
-        "python": null
-      }
     }
   ],
   "empresas": [
@@ -98,17 +82,6 @@
       "bairro": "Centro",
       "cidade": "São Luiz",
       "estado": "RR"
-    },
-    {
-      "id": 4,
-      "nome": "Empresa Genérica de Energia",
-      "cnpj": "27.330.782/0001-83",
-      "telefone": "(31) 98788-6587",
-      "cep": "01001-000",
-      "rua": "Praça da Sé",
-      "bairro": "Centro",
-      "cidade": "São Paulo",
-      "estado": "SP"
     }
   ]
 }
